@@ -3,4 +3,21 @@ layout: default
 title: Tapestry
 ---
 
-<h1>Hello world!</h1>
+<section class="mt4">
+    <h2>Introduction</h2>
+    <p>
+        Tapestry is a tool for generating static sites written in PHP using the <a href="http://platesphp.com/" target="_blank">PHP Plates</a>
+        template system. Tapestry has been kept intentionally basic, allowing for additional functionality through the use of plugins.
+    </p>
+    <h4>Not invented here</h4>
+    <p>
+        <a href="https://www.staticgen.com/" target="_blank">StaticGen</a> has a list of other static site generators available, although to my
+        knowledge Tapestry is the only one to use the PHPPlates template engine.
+    </p>
+
+    <hr>
+
+    <p class="center">
+        <a href="<?= $this->url('documentation') ?>" class="btn btn-outline">Quickstart Guide</a>
+    </p>
+</section>

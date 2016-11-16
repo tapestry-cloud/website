@@ -2,6 +2,8 @@
   "private": true,
   "dependencies": {
     "basscss": "^8.0.3",
+    "basscss-btn": "^1.1.1",
+    "basscss-btn-outline": "^1.1.0",
     "normalize.css": "^5.0.0"
   },
   "devDependencies": {
