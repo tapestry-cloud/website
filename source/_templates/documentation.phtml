@@ -13,20 +13,16 @@
 </head>
 <body class="text-center">
 
-<header class="main flex items-center">
-    <div class="flex-none center mx-auto">
-        <h1>Tapestry</h1>
+<header class="flex">
+    <div>
+        <h1 class="caps">Tapestry</h1>
         <h2>Build static sites with PHP Plates</h2>
     </div>
+    <nav>
+        <a href="#" class="btn btn-outline">Documentation</a>
+        <a href="#" class="btn btn-outline">Download</a>
+    </nav>
 </header>
-
-<nav class="main p2 center">
-    <ul class="list-reset list-inline m0 max-width-4 mx-auto caps">
-        <li><a href="<?= $this->url() ?>">Home</a></li>
-        <li><a href="<?= $this->url('documentation') ?>">Documentation</a></li>
-        <li><a href="https://github.com/carbontwelve/tapestry/releases">Download</a></li>
-    </ul>
-</nav>
 
 <main class="max-width-4 mx-auto px3">
     <div class="mt4 clearfix">

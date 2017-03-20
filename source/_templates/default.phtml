@@ -13,20 +13,37 @@
 </head>
 <body class="text-center">
 
-<header class="main flex items-center">
-    <div class="flex-none center mx-auto">
-        <h1>Tapestry</h1>
-        <h2>Build static sites with PHP Plates</h2>
+<header class="main">
+    <div class="max-width-4 mx-auto flex">
+        <div class="flex-auto">
+            <div class="brand flex-none">
+                <h1 class="caps"><a href="<?= $this->url() ?>">Tapestry</a></h1>
+                <small>Build static sites with PHP Plates</small>
+            </div>
+        </div>
+        <nav class="flex items-center right">
+            <ul class="list-reset list-inline m0">
+                <li class="m0"><a href="https://github.com/carbontwelve/tapestry/releases" class="btn btn-link">Download</a></li>
+                <li class="m0"><a href="<?= $this->url('documentation') ?>" class="btn btn-outline">Documentation</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="max-width-4 mx-auto">
+        <div class="center fit" style="margin-top:6rem;">
+            <h1 style="font-weight: lighter;">It's <em>another</em> Static Site Generator&hellip;</h1>
+            <h3 style="font-weight: lighter;">except this one uses the PHP Plates template system!</h3>
+        </div>
+        <div class="code-container flex items-end">
+            <div class="mx-auto">
+                <div class="code-box">
+                    <div class="mono flex-none"><span>$></span> composer global require
+                        <span>carbontwelve/tapestry</span></div>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
-
-<nav class="main p2 center">
-    <ul class="list-reset list-inline m0 max-width-4 mx-auto caps">
-        <li><a href="<?= $this->url() ?>">Home</a></li>
-        <li><a href="<?= $this->url('documentation') ?>">Documentation</a></li>
-        <li><a href="https://github.com/carbontwelve/tapestry/releases">Download</a></li>
-    </ul>
-</nav>
 
 <main class="max-width-4 mx-auto px3">
     <?= $this->section('content') ?>
