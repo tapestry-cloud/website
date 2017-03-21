@@ -3,21 +3,114 @@ layout: default
 title: Tapestry
 ---
 
-<section class="mt4">
-    <h2>Introduction</h2>
-    <p>
-        Tapestry is a tool for generating static sites written in PHP using the <a href="http://platesphp.com/" target="_blank">PHP Plates</a>
-        template system. Tapestry has been kept intentionally basic, allowing for additional functionality through the use of plugins.
-    </p>
-    <h4>Not invented here</h4>
-    <p>
-        <a href="https://www.staticgen.com/" target="_blank">StaticGen</a> has a list of other static site generators available, although to my
-        knowledge Tapestry is the only one to use the PHPPlates template engine.
-    </p>
+<section class="my4">
+    <header class="center my4">
+        <h2>Use <em>Plates</em>, the native PHP template system to build your static website.</h2>
+    </header>
 
-    <hr>
+    <div class="flex">
+        <div class="flex-auto flex items-center">
+            <div class="mr3" style="font-size: 1.1rem; line-height: 1.7rem;">
+                <p>
+                    <a href="http://platesphp.com/" target="_blank">PHP Plates</a> is a native PHP template system
+                    inspired by the excellent Twig template engine and is similarly fast, easy to use and easy to extend.
+                </p>
+                <p>
+                    Tapestry has been kept intentionally basic, incorporating PHP Plates for templating remains true to
+                    that goal.
+                </p>
+            </div>
+        </div>
+        <div class="col-6 flex-none flex items-center">
+            <div class="code-container flex items-end">
+                <div class="code-box">
+                    <div class="mono flex-none">
+                        <span>&#x3C;?php</span> $this-&#x3E;layout(&#x27;template&#x27;, [&#x27;title&#x27; =&#x3E; &#x27;Page Title&#x27;]) <span>?&#x3E;</span><br>
+                        <span>&#x3C;?php</span> $this-&#x3E;start(&#x27;page&#x27;) <span>?&#x3E;</span><br>
+                        <span>&#x3C;h1&#x3E;</span>Welcome!<span>&#x3C;/h1&#x3E;</span><br>
+                        <span>&#x3C;p&#x3E;</span>Hello <span>&#x3C;?</span>=$this-&#x3E;e($name)<span>?&#x3E;</span><span>&#x3C;/p&#x3E;</span><br>
+                        <span>&#x3C;?php</span> $this-&#x3E;stop() <span>?&#x3E;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <p class="center">
-        <a href="<?= $this->url('documentation') ?>" class="btn btn-outline">Quickstart Guide</a>
-    </p>
+<hr>
+
+<section class="my4">
+    <header class="center my4">
+        <h2>Markdown Extra, Taxonomy Support &amp; Frontmatter</h2>
+    </header>
+
+    <div class="flex">
+        <div class="col-6 flex-none py2">
+            <div class="code-container flex items-end">
+                <div class="code-box">
+                    <div class="mono flex-none">
+                        ---<br>
+                        <span>title:</span> Blog Post Title<br>
+                        <span>draft:</span> true<br>
+                        <span>categories:</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span>-</span> Misc<br>
+                        ---<br>
+                        # Welcome<br>
+                        This is a page...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-auto flex items-center">
+            <div class="ml3" style="font-size: 1.1rem; line-height: 1.7rem;">
+                <p>
+                    Markdown is an excellent format for writing, Tapestry extends upon that foundation by using
+                    <a href="https://michelf.ca/projects/php-markdown/extra/" target="_blank">Markdown Extra</a> for
+                    formatting your content driven pages.
+                </p>
+
+                <p>
+                    <a href="<?= $this->url('documentation') ?>">Find out more in the documentation&hellip;</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="my4">
+    <header class="center my4">
+        <h2>Not invented here</h2>
+    </header>
+
+    <div class="flex">
+        <div class="flex-auto flex items-center">
+            <div class="mr3" style="font-size: 1.1rem; line-height: 1.7rem;">
+                <p>
+                    <a href="https://www.staticgen.com/" target="_blank">StaticGen</a>  has a list of other static site generators available, although to my
+                    knowledge Tapestry is the only one to use the PHPPlates template engine.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-6 flex-none py2">
+            <img src="img/staticgen.gif" alt="Static Gen">
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="my4">
+    <header class="center my4">
+        <h2>Tired of all the marketing B.S, and want to give it a go?</h2>
+    </header>
+
+    <div>
+        <p class="center">
+            <a href="<?= $this->url('documentation') ?>" class="btn btn-outline">Quickstart Guide</a>
+        </p>
+    </div>
 </section>
