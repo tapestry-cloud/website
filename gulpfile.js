@@ -6,6 +6,10 @@ require('laravel-elixir-imagemin');
 
 elixir.config.assetsPath = 'source/_assets';
 elixir.config.publicPath = 'source';
+elixir.config.images = {
+    folder: 'img',
+    outputFolder: 'img'
+};
 
 elixir(function (mix) {
     var env = argv.e || argv.env || 'local';
@@ -13,7 +17,6 @@ elixir(function (mix) {
 
     mix.less('main.less')
         .imagemin()
-        .copy(elixir.config.assetsPath + '/img/favicon.ico', elixir.config.publicPath + '/img/favicon.ico')
         .exec('tapestry build --quiet --env=' + env, ['./source/*', './source/**/*', '!./source/_assets/**/*'])
         .browserSync({
             port: port,
