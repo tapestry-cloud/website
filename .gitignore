@@ -1,4 +1,4 @@
 node_modules
-vendor
 .idea
 .local_cache
+build_*
