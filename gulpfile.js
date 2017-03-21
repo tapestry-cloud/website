@@ -17,6 +17,7 @@ elixir(function (mix) {
 
     mix.less('main.less')
         .imagemin()
+        .browserify('app.js')
         .exec('tapestry build --quiet --env=' + env, ['./source/*', './source/**/*', '!./source/_assets/**/*'])
         .browserSync({
             port: port,
