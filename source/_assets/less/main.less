@@ -2,6 +2,7 @@
 @import (inline) "../../../node_modules/basscss/css/basscss.css";
 @import (inline) "../../../node_modules/basscss-btn/css/btn.css";
 @import (inline) "../../../node_modules/basscss-btn-outline/css/btn-outline.css";
+@import (inline) "../../../node_modules/prismjs/themes/prism-solarizedlight.css";
 
 @foreground: #738fa6;
 @background: #fff0d5;
@@ -14,7 +15,7 @@
 
 .code-box{
   width: 100%;
-  box-shadow: 0 0 10px 0px rgba(7, 16, 19, 0.58);
+  box-shadow: 0 0 10px 0 rgba(7, 16, 19, 0.58);
   border: 1px solid #0072c6;
   position: relative;
   padding-top:31px;
@@ -63,13 +64,25 @@ a {
 }
 
 code {
-  background: @background;
-  padding: 2px;
-  border: 1px solid @hover;
-  display: inline-block;
-  border-radius: 3px;
+  font-family: "Roboto Mono", monospace;
   font-size: 0.8em;
+  line-height: 1.3rem;
+  hyphens: none;
+  tab-size: 4;
+  text-shadow: 0 1px #fff;
+  text-align: left;
 }
+
+:not(pre)>code{
+  background: #f0f2f1;
+  color: @brand;
+  padding: 1px 5px;
+  border-radius: 3px;
+  display: inline-block;
+  box-shadow: 0 1px 1px rgba(0,0,0,.125);
+  vertical-align: middle;
+}
+
 
 hr {
   height: 1px;
@@ -131,6 +144,10 @@ nav.main {
     color: @background;
     text-decoration: none;
   }
+}
+
+article{
+  line-height: 1.8rem;
 }
 
 article h2 + ul {
