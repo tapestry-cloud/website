@@ -38,8 +38,8 @@
                         <span>Getting Started</span>
                         <ul>
                             <li><a href="<?= $this->url('documentation') ?>">Quickstart Guide</a></li>
-                            <li><a href="<?= $this->url('documentation/configuration') ?>">Configuration</a></li>
                             <li><a href="<?= $this->url('documentation/directory-structure') ?>">Project Directory Structure</a></li>
+                            <li><a href="<?= $this->url('documentation/configuration') ?>">Configuration</a></li>
                         </ul>
                     </li>
                     <li>
@@ -70,7 +70,7 @@
                 </ul>
             </div>
         </section>
-        <article class="col col-8 pl2"><?= $this->section('content') ?></article>
+        <article class="documentation col col-8 pl2"><?= $this->section('content') ?></article>
     </div>
 </main>
 <footer class="main py3">
@@ -81,5 +81,6 @@
         See an error or would like to contribute to this documentation? The source is <a href="https://github.com/carbontwelve/tapestry-cloud-src" target="_blank">available over on github</a>.
     </p>
 </footer>
+<script src="<?= $this->url('js/app.js') ?>" type="application/javascript"></script>
 </body>
 </html>

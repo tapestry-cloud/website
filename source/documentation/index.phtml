@@ -12,9 +12,9 @@ title: Quickstart Guide
             <li><a href="#installing-tapestry-phar">Installing Tapestry .phar</a></li>
             <li><a href="#installing-tapestry-composer">Installing Tapestry Globally via Composer</a></li>
             <li><a href="#upgrading">Upgrading</a></li>
+            <li><a href="#init-new-project">Init new project</a></li>
         </ul>
     </li>
-
 </ul>
 
 <h3><a name="installation" href="#installation">Installation</a></h3>
@@ -46,7 +46,7 @@ title: Quickstart Guide
     Installing Tapestry via composer currently has some issues that are as yet to be solved, however if you wish to proceed
     you can install Tapestry via composer through the following command:
 </p>
-<pre><code>composer global require carbontwelve/tapestry</code></pre>
+<pre class="language-bash"><code>$ composer global require carbontwelve/tapestry</code></pre>
 
 <h4><a name="upgrading" href="#upgrading">Upgrading</a></h4>
 
@@ -55,4 +55,13 @@ title: Quickstart Guide
     <code>tapestry self-update</code>. Tapestry will then look up its Github releases page and replace itself with the
     latest version if one is available. The <code>self-update</code> command accepts a <code>--rollback</code> option,
     which when set will prompt Tapestry to roll back to the previously installed version if it exists.
+</p>
+
+<h4><a name="init-new-project" href="#init-new-project">Init your first project</a></h4>
+
+<p>
+    To quickly get started using Tapestry, execute the command <code>tapestry init foldername</code> and Tapestry will create the
+    basic directory structure within the <em>foldername</em> that you specify, if you do not specify a foldername then
+    Tapestry will attempt to initiate within the current folder - this will fail unless the current working directory is
+    empty.
 </p>
