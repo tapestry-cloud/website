@@ -14,5 +14,8 @@
     "laravel-elixir-browsersync-official": "^1.0.0",
     "laravel-elixir-imagemin": "^0.2.3",
     "yargs": "^7.0.2"
+  },
+  "scripts": {
+    "install": "git clone https://github.com/Golmote/prism-treeview.git node_modules/prism-treeview"
   }
 }
