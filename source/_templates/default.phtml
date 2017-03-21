@@ -32,7 +32,7 @@
     <div class="max-width-4 mx-auto">
         <div class="center fit" style="margin-top:6rem;">
             <h1 style="font-weight: lighter;">It's <em>another</em> Static Site Generator&hellip;</h1>
-            <h3 style="font-weight: lighter;">except this one uses the PHP Plates template system!</h3>
+            <h3 style="font-weight: lighter;">&hellip; except this one uses the PHP Plates template system!</h3>
         </div>
         <div class="code-container flex items-end">
             <div class="mx-auto">
@@ -48,5 +48,14 @@
 <main class="max-width-4 mx-auto px3">
     <?= $this->section('content') ?>
 </main>
+
+<footer class="main py3">
+    <p class="center">
+        &copy; <?= date('Y') ?> Simon Dann, Tapestry is licensed under the <a href="https://github.com/carbontwelve/tapestry/blob/master/LICENSE" target="_blank">MIT License.</a>
+    </p>
+    <p class="center">
+        See an error or would like to contribute to this documentation? The source is <a href="https://github.com/carbontwelve/tapestry-cloud-src" target="_blank">available over on github</a>.
+    </p>
+</footer>
 </body>
 </html>

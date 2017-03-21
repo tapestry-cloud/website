@@ -13,6 +13,7 @@
 @keyline: #e0e0e0;
 
 .code-box{
+  width: 100%;
   box-shadow: 0 0 10px 0px rgba(7, 16, 19, 0.58);
   border: 1px solid #0072c6;
   position: relative;
@@ -32,8 +33,8 @@
 }
 
 .mono{
-  width: 500px;
   font-family: "Roboto Mono", monospace;
+  font-size: 0.8rem;
   padding: 10px;
   color: @keyline;
   background: #0D0106;
@@ -91,6 +92,14 @@ header.main {
     height:200px;
   }
 
+  .code-box{
+    width: 500px;
+  }
+
+  .mono{
+    font-size: 1rem;
+  }
+
   .brand{
     text-align: center;
     width: 200px;
@@ -107,6 +116,11 @@ header.main {
       text-transform: uppercase;
     }
   }
+}
+
+footer.main{
+  background: @dark;
+  color: @keyline;
 }
 
 nav.main {
