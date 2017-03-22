@@ -61,7 +61,14 @@ title: Quickstart Guide
 
 <p>
     To quickly get started using Tapestry, execute the command <code>tapestry init foldername</code> and Tapestry will create the
-    basic directory structure within the <em>foldername</em> that you specify, if you do not specify a foldername then
+    <a href="<?= $this->url('documentation/directory-structure') ?>" title="Project Directory Structure">basic directory structure</a> within the <em>foldername</em> that you specify, if you do not specify a foldername then
     Tapestry will attempt to initiate within the current folder - this will fail unless the current working directory is
     empty.
+</p>
+
+<p>
+    Once your new project workspace has been initiated you need to run <code>npm install</code> to install the task runner gulp,
+    the watch command has been configured to watch for changes to your workspace and execute tapestry when changes are detected.
+    BrowserSync is then used to display your generated pages and update the browser when things change. This makes development
+    with Tapestry very quick and easy to work with.
 </p>

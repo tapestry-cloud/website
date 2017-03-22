@@ -6,10 +6,26 @@ title: Project Directory Structure
 <h2>Project Directory Structure</h2>
 
 <ul>
-    <li><a href="#project-directory-structure">Project Directory Structure</a></li>
+    <li>
+        <a href="#project-directory-structure">Project Directory Structure</a>
+        <ul>
+            <li>
+                <a href="#source-folder">The source folder</a>
+            </li>
+            <li>
+                <a href="#defined-gulp-tasks">Defined Gulp tasks</a>
+            </li>
+        </ul>
+    </li>
 </ul>
 
 <h3><a name="project-directory-structure" href="#project-directory-structure">Project Directory Structure</a></h3>
+
+<p>
+    When you initiate a new project workspace, Tapestry will generate a basic workspace folder structure including
+    the files <code>package.json</code> and <code>gulpfile.js</code>; the generated folder structure as of Tapestry 1.0.6
+    looks like the following:
+</p>
 
 <pre class="language-treeview">
 <code>webroot/
@@ -32,4 +48,55 @@ title: Project Directory Structure
 └── package.json</code>
 </pre>
 
-<h4><a name="xxx" href="#xxx">xxx</a></h4>
+<p>
+    This generated workspace makes some assumptions on how you develop websites, namely that you use <code>npm</code> to install
+    your web packages and the <code>gulp</code> task runner for executing tasks;
+    more information on the tasks provided by the default gulpfile can be <a href="#defined-gulp-tasks" title="Defined Gulp tasks">found here</a>.
+</p>
+
+<h4><a name="source-folder" href="#source-folder">The source folder</a></h4>
+
+<p>
+    Any folder prefixed with an underscore is by default ignored by Tapestry; while they are ignored by the main gathering
+    process, custom content types defined within your workspace configuration are able to tell Tapestry how to use ignored
+    folders; e.g <code>_blog</code> is a special folder configured and used by the default
+    <a href="<?= $this->url('documentation/content-types') ?>">blog content type</a>.
+</p>
+<p>
+    The folders <code>_template</code> and <code>_views</code> are special folders that contain your templates; it wouldn't
+    make much sense for Tapestry to render these straight out to html so they are prefixed with an underscore.
+</p>
+<p>
+    The default behavior of Tapestry is to take any text file found within the source folder and attempt to generate html
+    from its content. Binary files such as images are copied from source to the build directory with no additional processing.
+</p>
+
+<h4><a name="defined-gulp-tasks" href="#defined-gulp-tasks">Defined Gulp tasks</a></h4>
+
+<p>
+    To aid in quickly getting started with using Tapestry the default workspace is generated with both a <code>gulpfile.js</code> and
+    a <code>package.json</code>. To use the bundled gulp task runner for development you need to first install its node_modules via
+    executing <code>npm install</code>.
+</p>
+<p>
+    Once complete you will gain access to the following gulp tasks:
+</p>
+<ul>
+    <li>less</li>
+    <li>imagemin</li>
+    <li>browserfy</li>
+    <li>exec</li>
+    <li>browserSync</li>
+</ul>
+<p>
+    By default gulp will execute these in order and you will notice within your workspaces source folder the folders:
+    <code>css</code>, <code>js</code> and <code>img</code> appear - these will contain the generated css, js and images.
+</p>
+<p>
+    There is also a <code>watch</code> task defined which will watch your workspaces source folder for any changes and
+    execute the appropriate tasks; one additional benefit of this is the use of browserSync to display your changes in
+    your browser. Running the <code>watch</code> task will prompt gulp to package up the assets found in the <code>_assets</code>
+    folder and then open the generated website in chrome; each time you change a source file the relevant files will be
+    re-generated and that browser window updated. This makes developing websites much easier as the task runner automates
+    several tasks.
+</p>
