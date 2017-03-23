@@ -12,12 +12,49 @@ title: Configuration
             <li>
                 <a href="#env-configuration">Environment Configuration</a>
             </li>
+            <li>
+                <a href="#configuration-load-order">Configuration Load Order</a>
+            </li>
+            <li>
+                <a href="#">Accessing Configuration Values</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#core-configuration-values">Core Configuration Values</a>
+        <ul>
+            <li>
+                <a href="#core-configuration-values-debugging">Debug</a>
+            </li>
+            <li>
+                <a href="#core-configuration-values-kernel">Kernel</a>
+            </li>
+            <li>
+                <a href="#core-configuration-values-pretty-permalink">Pretty Permalink</a>
+            </li>
+            <li>
+                <a href="#core-configuration-values-publish-drafts">Publish Drafts</a>
+            </li>
+            <li>
+                <a href="#core-configuration-values-content-types">Content Types</a>
+            </li>
+            <li>
+                <a href="#core-configuration-values-content-renderers">Content Renderers</a>
+            </li>
+            <li>
+                <a href="#core-configuration-values-content-generators">Content Generators</a>
+            </li>
+            <li>
+                <a href="#core-configuration-values-ignore">Ignore</a>
+            </li>
+            <li>
+                <a href="#core-configuration-values-copy">Copy</a>
+            </li>
         </ul>
     </li>
 </ul>
 
 <h3><a name="configuration" href="#configuration">Configuration</a></h3>
-
 <p>
     Configuration for Tapestry is stored in either PHP or YAML format within the root of your project workspace. By default
     Tapestry initiates a new project workspace with a <code>config.php</code>, however you can replace that with <code>config.yaml</code> if
@@ -26,6 +63,7 @@ title: Configuration
 
 <aside class="notice">
     <p>
+        <strong>Note:</strong>
         You may only have either a <code>config.php</code> or a <code>config.yaml</code> file in your project; Tapestry will exit with
         an error if both exist.
     </p>
@@ -34,8 +72,154 @@ title: Configuration
 <h4><a name="env-configuration" href="#env-configuration">Environment Configuration</a></h4>
 
 <p>
-    
+    It's often helpful to have different configuration values based upon the environment that your static site is being
+    hosted on. For example the base url will be different when developing from <code>localhost:8000</code> to when you
+    deploy to your web hosting.
 </p>
 
+<p>
+    The build command accepts the current environment through the <code>--env</code> option, this defaults to <code>local</code>
+    when not defined.
+</p>
 
+<h4><a name="configuration-load-order" href="#configuration-load-order">Configuration Load Order</a></h4>
 
+<p>
+    When Tapestry initiates it loads default configuration from its core
+    <a href="https://github.com/carbontwelve/tapestry/blob/master/src/Modules/Config/DefaultConfig.php" target="_blank">DefaultConfig.php</a>.
+    It then looks in the project workspace for the existence of and loads if found <code>config.php|yaml</code>. Finally
+    Tapestry then looks for and loads if found <code>config-{env}.php|yaml</code>.
+</p>
+
+<p>
+    This load order allows you the freedom to define constants within <code>config.php|yaml</code> and then per environment
+    overloads within <code>config-{env}.php|yaml</code>.
+</p>
+
+<h3><a name="core-configuration-values" href="#core-configuration-values">Core Configuration Values</a></h3>
+<p>
+    The default configuration for Tapestry is defined within <a href="https://github.com/carbontwelve/tapestry/blob/master/src/Modules/Config/DefaultConfig.php" target="_blank">DefaultConfig.php</a>.
+</p>
+
+<h4><a name="core-configuration-values-debugging" href="#core-configuration-values-debugging">Debugging</a></h4>
+<p>
+    This configuration option currently does nothing, the idea is that when <code>true</code> it would allow for stack traces
+    to be output into your html for debugging; however currently these are output to your console before Tapestry exits.
+</p>
+<p>
+    <strong>Default:</strong> <code>false</code>
+</p>
+<p>
+    Currently marked as <strong>deprecated</strong>.
+</p>
+
+<h4><a name="core-configuration-values-kernel" href="#core-configuration-values-kernel">Kernel</a></h4>
+<p>
+    The workspace kernel to be loaded during site building; this is the class that you use to extend Tapestry and insert
+    your own extensions and functionality, for more information <a href="<?= $this->url('documentation/kernel') ?>">see here</a>.
+</p>
+<p>
+    <strong>Default:</strong> <code>\Tapestry\Modules\Kernel\DefaultKernel::class</code>
+</p>
+
+<h4><a name="core-configuration-values-pretty-permalink" href="#core-configuration-values-pretty-permalink">Pretty Permalinks</a></h4>
+<p>
+    Enable / Disable pretty permalink, if <code>true</code> then /about.md will be written as /about/index.md.
+    This may be over-ridden on a per file basis.
+</p>
+<p>
+    <strong>Default:</strong> <code>true</code>
+</p>
+
+<h4><a name="core-configuration-values-publish-drafts" href="#core-configuration-values-publish-drafts">Publish Drafts</a></h4>
+<p>
+    Enable / Disable the publishing of files with <code>draft: true</code> in their front matter. You may want to set this as true in
+    your development environment configuration so you can preview draft posts.
+</p>
+<p>
+    <strong>Default:</strong> <code>false</code>
+</p>
+
+<h4><a name="core-configuration-values-content-types" href="#core-configuration-values-content-types">Content Types</a></h4>
+<p>
+    By default Tapestry is configured with a blog content type, for more detailed information on configuring Content
+    Types and how to use them <a href="<?= $this->url('documentation/content-types') ?>">click here</a>.
+</p>
+
+<h4><a name="core-configuration-values-content-renderers" href="#core-configuration-values-content-renderers">Content Renderers</a></h4>
+<p>
+    By default Tapestry comes with four content renderers built in, these can convert the following input formats into HTML:
+</p>
+
+<ul>
+    <li><strong>phtml</strong> &mdash; <em>PHP Plates template files</em></li>
+    <li><strong>html</strong> &mdash; <em>raw HTML content files</em></li>
+    <li><strong>md</strong> &mdash; <em>markdown content files</em></li>
+    <li><strong>default</strong> &mdash; <em>all other files which get copied rather than rendered</em></li>
+</ul>
+
+<p>
+    <a href="<?= $this->url('documentation/content-renderers') ?>">Click here</a> for more detailed information on the
+    inner workings of content renderers and how to extend Tapestry with your own.
+</p>
+
+<h4><a name="core-configuration-values-content-generators" href="#core-configuration-values-content-generators">Content Generators</a></h4>
+<p>
+    By default Tapestry comes with four content generators built in, these provide the following functionality:
+</p>
+
+<ul>
+    <li>
+        PaginationGenerator &mdash; this takes an input collection and paginates it, generating each page as necessary and
+        injecting a pagination object.
+    </li>
+    <li>
+        TaxonomyArchiveGenerator &mdash; this generates taxonomy archive pages, for example one page for each unique category
+        used within a content type. This can be paired with the PaginationGenerator to generate paginated archive pages.
+    </li>
+    <li>
+        TaxonomyIndexGenerator &mdash; currently this generator is a placeholder demo for functionality. It currently does
+        nothing beyond piping through to the next generator if one is defined.
+    </li>
+    <li>
+        CollectionItemGenerator &mdash; this generator takes an input collection of content and generates pages for each
+        item, each generated page is injected with that items siblings allowing for it to be aware of previous and next
+        items.
+    </li>
+</ul>
+
+<p>
+    <a href="<?= $this->url('documentation/content-generators') ?>">Click here</a> for more detailed information on the
+    inner workings of content generators and how to extend Tapestry with your own.
+</p>
+
+<h4><a name="core-configuration-values-ignore" href="#core-configuration-values-ignore">Ignore</a></h4>
+<p>
+    This contains an array of paths to ignore and not parse, any path matching those listed will be ignored by Tapestry
+    during its initial file scraping (this does not limit additional plugins/modules unless they choose to abide by it.)
+</p>
+<p>
+    <strong>Default:</strong> <code>['_assets']</code>
+</p>
+
+<aside class="notice">
+    <p>
+        <strong>Note:</strong> Ignore values must be valid regex.
+    </p>
+</aside>
+
+<h4><a name="core-configuration-values-copy" href="#core-configuration-values-copy">Copy</a></h4>
+<p>
+    Paths that have been ignored, but which should be copied 1-to-1 from source to destination. This is useful for
+    ensuring that assets are copied, but are not parsed (which would slow things down with many files.)
+</p>
+<p>
+    <strong>Default:</strong> <code>[]</code>
+</p>
+
+<aside class="notice">
+    <p>
+        <strong>Note:</strong> Values for copy must be valid regex, and items within the copy array must exist within the ignore array otherwise
+        they will be ignored.
+    </p>
+</aside>
