@@ -80,7 +80,7 @@ code {
   padding: 1px 5px;
   border-radius: 3px;
   display: inline-block;
-  box-shadow: 0 1px 1px rgba(0,0,0,.125);
+  box-shadow: 0 1px 1px rgba(0,0,0,.325);
   vertical-align: middle;
 }
 
@@ -167,6 +167,7 @@ article h2 + ul {
   padding: 0;
   li {
     list-style: none;
+    font-weight: bold;
 
     &:before {
       content: "# ";
@@ -179,12 +180,8 @@ article h2 + ul {
       opacity: 1;
     }
 
-    &:first-child {
-      font-weight: bold;
-
-      li {
-        font-weight: normal;
-      }
+    li {
+      font-weight: normal;
     }
 
     a {
