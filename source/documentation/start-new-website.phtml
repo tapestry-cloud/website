@@ -1,11 +1,14 @@
 ---
 layout: documentation
-title: Project Directory Structure
+title: Starting a new Website
 ---
 
-<h2>Project Directory Structure</h2>
+<h2>Starting a new Website</h2>
 
 <ul>
+    <li>
+        <a href="#workspace-scaffold">Start a new website</a>
+    </li>
     <li>
         <a href="#project-directory-structure">Project Directory Structure</a>
         <ul>
@@ -17,7 +20,36 @@ title: Project Directory Structure
             </li>
         </ul>
     </li>
+    <li>
+        <a href="#building-and-previewing">Building &amp; Previewing</a>
+        <ul>
+            <li>
+                <a href="#preview-php">Preview with PHP</a>
+            </li>
+            <li>
+                <a href="#preview-gulp">Preview with Gulp Task</a>
+            </li>
+        </ul>
+    </li>
 </ul>
+
+<h3><a name="workspace-scaffold" href="#workspace-scaffold">Start a new website</a></h3>
+
+<p>
+    The quickest way of starting a new website with Tapestry is via the <a href="<?= $this->url('documentation/commands') ?>#init-command">init command</a> which
+    scaffolds out a default project directory structure for you.
+</p>
+
+<p>
+    If you have Tapestry installed globally you can simply run:
+</p>
+
+<pre class="language-bash"><code>$ tapestry init example-website</code></pre>
+
+<p>
+    Tapestry will create the folder <em>example-website</em> and scaffold into it the default project directory structure.
+    You will then need to run <code>npm install</code> to get the bundled gulp tasks.
+</p>
 
 <h3><a name="project-directory-structure" href="#project-directory-structure">Project Directory Structure</a></h3>
 
@@ -99,4 +131,58 @@ title: Project Directory Structure
     folder and then open the generated website in chrome; each time you change a source file the relevant files will be
     re-generated and that browser window updated. This makes developing websites much easier as the task runner automates
     several tasks.
+</p>
+
+<h3><a name="building-and-previewing" href="#building-and-previewing">Building &amp; Previewing</a></h3>
+
+<p>
+    If you have Tapestry installed globally, to build your Tapestry website you execute the
+    <a href="<?= $this->url('documentation/commands') ?>#build-command">build command</a> like so:
+</p>
+
+<pre class="language-bash"><code>$ tapestry build</code></pre>
+
+<p>
+    This will build the files found in the <code>source</code> directory and output them to the <code>build_local</code>,
+    local is the default environment for Tapestry and the build command accepts a <code>--env</code> argument with which
+    you can define the environment, e.g the following will output to <code>build_development</code>:
+</p>
+
+<pre class="language-bash"><code>$ tapestry build --env=development</code></pre>
+
+<h4><a name="preview-php" href="#preview-php">Previewing with PHP</a></h4>
+
+<p>
+    In the interest of keeping Tapestry light, previewing your website with PHP is handled directly by PHP itself, this
+    is done via the following command:
+</p>
+
+<pre class="language-bash"><code>$ php -S 127.0.0.1:3000 -t build_local</code></pre>
+
+<p>
+    PHP will then serve up the static pages at <code>http://127.0.0.1:3000</code> while providing output akin to the
+    below in to your console:
+</p>
+
+<pre class="language-bash"><code>PHP 5.6.24 Development Server started at Thu Mar 23 15:42:36 2017
+Listening on http://127.0.0.1:3000
+Document root is F:\build_local
+Press Ctrl-C to quit.
+[Thu Mar 23 15:42:41 2017] 127.0.0.1:53118 [200]: /
+[Thu Mar 23 15:42:41 2017] 127.0.0.1:53119 [200]: /img/staticgen.gif
+[Thu Mar 23 15:43:01 2017] 127.0.0.1:53145 [200]: /documentation
+</code></pre>
+
+<h4><a name="preview-gulp" href="#preview-gulp">Previewing with Gulp Task</a></h4>
+
+<p>
+    The default project scaffold comes with <a href="<?= $this->url('documentation/your-content') ?>">Laravel Elixir</a>,
+    this provides out of the box tasks for less, imagemin, browserify and browserSync. Install via <code>npm install</code>
+    and then <code>gulp watch</code> to preview your site.
+</p>
+
+<p>
+    browserSync will open a new browser window/tab automatically and reload the page every time a change is noticed. I
+    have noticed one distinct bug with the file watcher on Windows in that it will not notice if you add a new
+    file to the watched path - in that case I personally execute <code>tapestry build</code> in a separate terminal.
 </p>
