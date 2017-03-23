@@ -16,7 +16,7 @@ title: Configuration
                 <a href="#configuration-load-order">Configuration Load Order</a>
             </li>
             <li>
-                <a href="#">Accessing Configuration Values</a>
+                <a href="#accessing-configuration-values">Accessing Configuration Values</a>
             </li>
         </ul>
     </li>
@@ -94,6 +94,32 @@ title: Configuration
 <p>
     This load order allows you the freedom to define constants within <code>config.php|yaml</code> and then per environment
     overloads within <code>config-{env}.php|yaml</code>.
+</p>
+
+<h4><a name="accessing-configuration-values" href="#accessing-configuration-values">Accessing Configuration Values</a></h4>
+<p>
+    To assist in accessing configuration values from your phtml templates Tapestry provides a <em>site</em>
+    <a href="<?= $this->url('documentation/helpers') ?>">helper</a>. This allows access to any configuration you set within
+    the site config namespace.
+</p>
+<p>
+    For example, the <a href="https://github.com/carbontwelve/tapestry-cloud-src/blob/master/config.php" target="_blank">configuration</a>
+    for this website defines the following:
+</p>
+<pre class="language-php"><code>&lt;?php
+    return [
+        'site' => [
+            'title' => 'tapestry.cloud',
+            'url' => 'http://localhost:3000',
+            'description' => 'Tapestry static site generator.',
+            // ...
+        ]
+    ]
+?&gt;</code></pre>
+
+<p>
+    Everything within the <em>site</em> namespace is available from the websites template files via the site helper, for
+    example if I wanted to output the site title I could do: <code class="language-php">&lt;?= $this->site('title') ?&gt;</code>.
 </p>
 
 <h3><a name="core-configuration-values" href="#core-configuration-values">Core Configuration Values</a></h3>
