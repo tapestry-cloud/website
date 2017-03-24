@@ -6,69 +6,116 @@ title: Quickstart Guide
 <h2>Quickstart Guide</h2>
 
 <ul>
-    <li><a href="#installation">Installation</a>
+    <li><a href="#welcome">Welcome</a>
         <ul>
-            <li><a href="#system-requirements">System Requirements</a></li>
-            <li><a href="#installing-tapestry-phar">Installing Tapestry .phar</a></li>
-            <li><a href="#installing-tapestry-composer">Installing Tapestry Globally via Composer</a></li>
-            <li><a href="#upgrading">Upgrading</a></li>
-            <li><a href="#init-new-project">Init new project</a></li>
+            <li><a href="#installing-tapestry">Installing Tapestry</a></li>
+            <li><a href="#first-website">Scaffold your first website</a></li>
+            <li><a href="#project-structure">Project Structure</a></li>
+            <li><a href="#building-previewing">Building &amp; Previewing</a></li>
         </ul>
     </li>
 </ul>
 
-<h3><a name="installation" href="#installation">Installation</a></h3>
-
-<h4>
-    <a name="system-requirements" href="#system-requirements">System Requirements</a>
-</h4>
+<h3><a name="welcome" href="#welcome">Welcome</a></h3>
 
 <p>
-    Tapestry has few system requirements, it only requires that you have <code>PHP >= 5.6.4</code> installed.
+    This documentation aims to be a comprehensive guide to Tapestry; here we'll cover topics such as
+    <a href="<?= $this->url('documentation/installation')?>">Installing Tapestry</a>,
+    <a href="<?= $this->url('documentation/start-new-website') ?>">starting your first website</a> and
+    <a href="<?= $this->url('documentation/deploying') ?>">Deploying</a>.
 </p>
 
-<h4><a name="installing-tapestry-phar" href="#installing-tapestry-phar">Installing Tapestry .phar</a></h4>
+<h4><a name="installing-tapestry" href="#installing-tapestry">Installing Tapestry</a></h4>
 
 <p>
-    The preferred method of installing Tapestry is to download the <code>.phar</code> archive available from the projects
-    github releases page <a href="https://github.com/carbontwelve/tapestry/releases">here</a>.
+    There are <a href="<?= $this->url('documentation/installation') ?>">multiple methods</a> of installing Tapestry, the
+    quickest is installing globally via Composer:
 </p>
 
-<p>
-    Once downloaded unzip the <code>tapestry-x.x.x.zip</code> and place the <code>tapestry.phar</code> and (if on windows) <code>tapestry.bin</code>
-    files in to a folder that is within your <code>%PATH%</code>. If completed successfully typing <code>where tapestry</code>
-    on widows or <code>which tapestry</code> on linux will return the location path for where you have installed Tapestry.
-</p>
-
-<h4><a name="installing-tapestry-composer" href="#installing-tapestry-composer">Installing Tapestry Globally via Composer</a></h4>
-
-<p>
-    Installing Tapestry via composer currently has some issues that are as yet to be solved, however if you wish to proceed
-    you can install Tapestry via composer through the following command:
-</p>
 <pre class="language-bash"><code>$ composer global require carbontwelve/tapestry</code></pre>
 
-<h4><a name="upgrading" href="#upgrading">Upgrading</a></h4>
-
 <p>
-    Upgrading Tapestry to the latest version if installed via the .phar method is as simple as executing the command
-    <code>tapestry self-update</code>. Tapestry will then look up its Github releases page and replace itself with the
-    latest version if one is available. The <code>self-update</code> command accepts a <code>--rollback</code> option,
-    which when set will prompt Tapestry to roll back to the previously installed version if it exists.
+    To test that you have successfully installed Tapestry you can run <code>tapestry --version</code> in your terminal and
+    you should see <code>Tapestry version 1.0.6, environment local</code> in return.
 </p>
 
-<h4><a name="init-new-project" href="#init-new-project">Init your first project</a></h4>
+<pre class="language-bash"><code>$ composer global require carbontwelve/tapestry</code></pre>
+
+<aside class="notice blue">
+    <p>
+        If you prefer not to install via composer, you can download Tapestry as a .phar
+        <a href="https://github.com/carbontwelve/tapestry/releases" target="_blank">here</a>.
+    </p>
+</aside>
+
+<h4><a name="first-website" href="#first-website">Scaffold your first website</a></h4>
 
 <p>
-    To quickly get started using Tapestry, execute the command <code>tapestry init foldername</code> and Tapestry will create the
-    <a href="<?= $this->url('documentation/directory-structure') ?>" title="Project Directory Structure">basic directory structure</a> within the <em>foldername</em> that you specify, if you do not specify a foldername then
-    Tapestry will attempt to initiate within the current folder - this will fail unless the current working directory is
-    empty.
+    Tapestry comes with a basic project scaffold built in, if you have Tapestry installed globally you can simply run:
+</p>
+
+<pre class="language-bash"><code>$ tapestry init my-first-website</code></pre>
+
+<p>
+    Tapestry will create the folder <em>my-first-website</em> within the current working directory and scaffold into it
+    the default project directory structure.
 </p>
 
 <p>
-    Once your new project workspace has been initiated you need to run <code>npm install</code> to install the task runner gulp,
-    the watch command has been configured to watch for changes to your workspace and execute tapestry when changes are detected.
-    BrowserSync is then used to display your generated pages and update the browser when things change. This makes development
-    with Tapestry very quick and easy to work with.
+    The default project scaffold, for convenience comes with Laravel Elixir bundled in; before we continue you will need
+    to run <code>npm install</code> to install it. For more information on the defined gulp tasks that come with Laravel
+    Elixir, <a href="<?= $this->url('documentation/start-new-website') ?>/#defined-gulp-tasks">click here</a>.
+</p>
+
+<h4><a name="project-structure" href="#project-structure">Project Structure</a></h4>
+
+<p>
+    You should now within the <code>my-first-website</code> folder see the following generated file structure:
+</p>
+
+<pre class="language-treeview">
+<code>my-first-website/
+├── source/
+|   ├── _assets/
+|   |   ├── img
+|   |   ├── js
+|   |   └── less
+|   ├── _blog/
+|   |   └── 2016-01-01-hello-world.md
+|   ├── _templates/
+|   |   └── default.phtml
+|   ├── _views/
+|   |   └── blog.phtml
+|   └── index.phtml
+├── .gitignore
+├── node_modules
+├── config.php
+├── gulpfile.js
+├── kernel.php
+└── package.json</code>
+</pre>
+
+<p>
+    More details on the default Tapestry project structure can be found
+    <a href="<?= $this->url('/documentation/start-new-website') ?>/#project-directory-structure">here</a>.
+</p>
+
+<p>
+    Tapestry is &ldquo;<em>blog aware</em>&rdquo; out of the box so the majority of the default scaffold files are to
+    do with displaying a collection of blog posts; you can find out more about creating your content
+    <a href="<?= $this->url('documentation/your-content') ?>">here</a>.
+</p>
+
+<h4><a name="building-previewing" href="#building-previewing">Building &amp; Previewing</a></h4>
+
+<p>
+    To build your Tapestry website you execute the
+    <a href="<?= $this->url('documentation/commands') ?>#build-command">build command</a> within the
+    <code>my-first-website</code> folder:
+</p>
+
+<pre class="language-bash"><code>$ tapestry build</code></pre>
+
+<p>
+
 </p>
