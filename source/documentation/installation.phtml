@@ -6,5 +6,58 @@ title: Installation
 <h2>Installation</h2>
 
 <ul>
-    <li><a href="#installation">Installation</a></li>
+    <li><a href="#installation">Installation</a>
+        <ul>
+            <li><a href="#system-requirements">System Requirements</a></li>
+            <li><a href="#installing-tapestry-phar">Installing Tapestry .phar</a></li>
+            <li><a href="#installing-tapestry-composer">Installing Tapestry Globally via Composer</a></li>
+            <li><a href="#upgrading">Upgrading</a></li>
+        </ul>
+    </li>
 </ul>
+
+<h3><a name="installation" href="#installation">Installation</a></h3>
+
+<h4>
+    <a name="system-requirements" href="#system-requirements">System Requirements</a>
+</h4>
+
+<p>
+    Tapestry has few system requirements, it only requires that you have <code>PHP >= 5.6.4</code> installed.
+</p>
+
+<h4><a name="installing-tapestry-phar" href="#installing-tapestry-phar">Installing Tapestry .phar</a></h4>
+
+<p>
+    The preferred method of installing Tapestry is to download the <code>.phar</code> archive available from the projects
+    github releases page <a href="https://github.com/carbontwelve/tapestry/releases">here</a>.
+</p>
+
+<p>
+    Once downloaded unzip the <code>tapestry-x.x.x.zip</code> and place the <code>tapestry.phar</code> and (if on windows) <code>tapestry.bin</code>
+    files in to a folder that is within your <code>%PATH%</code>. If completed successfully typing <code>where tapestry</code>
+    on widows or <code>which tapestry</code> on linux will return the location path for where you have installed Tapestry.
+</p>
+
+<h4><a name="installing-tapestry-composer" href="#installing-tapestry-composer">Installing Tapestry Globally via Composer</a></h4>
+
+<p>
+    Installing Tapestry via composer currently has some issues that are as yet to be solved, however if you wish to proceed
+    you can install Tapestry via composer through the following command:
+</p>
+<pre class="language-bash"><code>$ composer global require carbontwelve/tapestry</code></pre>
+
+<aside class="notice blue">
+    <p>
+        Now you have installed Tapestry <a href="<?= $this->url('documentation/start-new-website') ?>">click here</a> to learn how to start a new website.
+    </p>
+</aside>
+
+<h4><a name="upgrading" href="#upgrading">Upgrading</a></h4>
+
+<p>
+    Upgrading Tapestry to the latest version if installed via the .phar method is as simple as executing the command
+    <code>tapestry self-update</code>. Tapestry will then look up its Github releases page and replace itself with the
+    latest version if one is available. The <code>self-update</code> command accepts a <code>--rollback</code> option,
+    which when set will prompt Tapestry to roll back to the previously installed version if it exists.
+</p>
