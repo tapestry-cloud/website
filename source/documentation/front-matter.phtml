@@ -1,0 +1,67 @@
+---
+layout: documentation
+title: Front Matter
+---
+
+<h2>Front Matter</h2>
+
+<ul>
+    <li><a href="#front-matter">Front Matter</a>
+        <ul>
+            <li><a href="#usage">Usage within text files</a></li>
+            <li><a href="#pre-defined-vars">Pre-defined Variables</a></li>
+        </ul>
+    </li>
+</ul>
+
+<h3><a name="front-matter" href="#front-matter">Front Matter</a></h3>
+<p>
+    For those of you not wondering what Front Matter is you may skip to the next heading, for every one else I will
+    provide a quick explanation:
+</p>
+
+<p>
+    Front Matter is a block of <a href="http://yaml.org/" target="_blank">YAML</a> formatted text sandwiched
+    between triple-dashed lines (I <em>did</em> say it would be quick).
+</p>
+
+<h4><a name="usage" href="#usage">Usage within text files</a></h4>
+
+<p>
+    Front Matter provides the facility to set <a href="#pre-defined-vars">predefined variables</a> or for you to set your
+    own. The parsed YAML is made available as PHP variables to the page template and any layouts or includes that rely on
+    the page.
+</p>
+
+<p>
+    For example, the below YAML block is accessible from within the page itself as the string <code class="language-php">$title</code>
+    and array <code class="language-php">$tags</code>; it's also available to any collection that page belongs to and
+    therefore can be used to filter a collection &ndash; more information on this can be <a href="<?= $this->url('documentation/collections') ?>">found here</a>.
+</p>
+
+<pre class="language-yaml"><code>---
+title: Hello World!
+tags:
+    - One
+    - Two
+    - Three
+---</code></pre>
+
+<h4><a name="pre-defined-vars" href="#pre-defined-vars">Pre-defined Variables</a></h4>
+
+<p>
+    Tapestry has a small number of pre-defined variables that are programmatically set when a source file is parsed; also
+    collections can be configured to inject pre-defined variables into their children; for example the blog collection
+    sets the page's categories and tags to an empty array if none are defined in the file in question.
+</p>
+
+<ul>
+    <li><strong>date</strong>: <em>This value is first set to the last modified timestamp of the file, Tapestry then
+        checks to see if the filename contains a date in the format </em><code>YYYY-MM-DD-filename.ext</code><em> and
+        setting the value to that if found before lastly checking the files front matter and setting the date
+        if found from there.</em></li>
+    <li><strong>title</strong>: <em>This value is first set to the filename of the file, if the filename contains hyphens
+        those are converted to spaces; Tapestry also parses out any date in the YYYY-MM-DD format. Tapestry then sets
+        this value to what is defined in the files front matter, if set.</em></li>
+    <li><strong>layout</strong>: <em>This value is set to an empty string if not set within the files front matter.</em></li>
+</ul>
