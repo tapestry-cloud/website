@@ -18,19 +18,60 @@ title: Helpers
 <h3><a name="helpers" href="#helpers">Helpers</a></h3>
 
 <p>
-
+    Helpers are <a href="http://platesphp.com/engine/extensions/" target="_blank">extensions to Plates PHP</a> that
+    provide additional functionality to your templates. Helpers are available via <code class="language-php">$this</code>
+    within any project <code>phtml</code> file. Tapestry comes with two helpers built in and it is easy to extend
+    Tapestry by adding your own.
 </p>
 
 <h4><a name="site-variables-helper" href="#site-variables-helper">Site Variables Helper</a></h4>
 
 <p>
+    The site variables helper provides an interface by which you can access <a href="<?= $this->site('documentation/site-variables') ?>">site variables</a>,
+    its usage is:
+</p>
 
+<pre class="language-php"><code>&lt;?= $this->site(string $key, mixed $default = null) ?&gt;</code></pre>
+
+<p>
+    The helper will return the configured site variable for the given <code class="language-php">$key</code>,
+    or <code class="language-php">$default</code> if the site variable is not found. In cases where the site variable is not found and
+    you do not provide a default fall back, it will return <code class="language-php">null</code>.
+</p>
+
+<p>
+    The source code for the site variable helper can be found in <a
+            href="https://github.com/carbontwelve/tapestry/blob/master/src/Plates/Extensions/Site.php" target="_blank">/src/Plates/Extensions/Site.php</a>.
 </p>
 
 <h4><a name="url-helper" href="#url-helper">URL Helper</a></h4>
 
 <p>
+    The URL helper is a wrapper for the
+    <a href="https://github.com/carbontwelve/tapestry/blob/master/src/Entities/Url.php" target="_blank">Url entity class</a>.
+    It requires that the <code>url</code> site variable be set so that it may return absolute urls to its given input.
+</p>
 
+<p>
+    It's usage is:
+</p>
+
+<pre class="language-php"><code>&lt;?= $this->url(string $uri = '') ?&gt;</code></pre>
+
+<p>
+    It will append the provided <code class="language-php">$uri</code> to the configured <code>url</code> site variable,
+    producing an absolute url to the location you provide.
+</p>
+
+<aside class="notice red">
+    <p>
+        <strong>Note:</strong> If the URL helper is used and the <code>url</code> site variable is not defined, Tapestry will return an error and exit.
+    </p>
+</aside>
+
+<p>
+    The source code for the URL helper can be found in <a
+            href="https://github.com/carbontwelve/tapestry/blob/master/src/Plates/Extensions/Url.php" target="_blank">/src/Plates/Extensions/Url.php</a>.
 </p>
 
 <h3><a name="adding-helpers" href="#adding-helpers">Adding your own helpers</a></h3>
