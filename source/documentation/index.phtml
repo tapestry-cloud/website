@@ -11,7 +11,17 @@ title: Quickstart Guide
             <li><a href="#installing-tapestry">Installing Tapestry</a></li>
             <li><a href="#first-website">Scaffold your first website</a></li>
             <li><a href="#project-structure">Project Structure</a></li>
-            <li><a href="#building-previewing">Building &amp; Previewing</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#building-and-previewing">Building &amp; Previewing</a>
+        <ul>
+            <li>
+                <a href="#preview-php">Preview with PHP</a>
+            </li>
+            <li>
+                <a href="#preview-gulp">Preview with Gulp Task</a>
+            </li>
         </ul>
     </li>
 </ul>
@@ -38,8 +48,6 @@ title: Quickstart Guide
     To test that you have successfully installed Tapestry you can run <code>tapestry --version</code> in your terminal and
     you should see <code>Tapestry version 1.0.6, environment local</code> in return.
 </p>
-
-<pre class="language-bash"><code>$ composer global require carbontwelve/tapestry</code></pre>
 
 <aside class="notice blue">
     <p>
@@ -106,16 +114,4 @@ title: Quickstart Guide
     <a href="<?= $this->url('documentation/your-content') ?>">here</a>.
 </p>
 
-<h4><a name="building-previewing" href="#building-previewing">Building &amp; Previewing</a></h4>
-
-<p>
-    To build your Tapestry website you execute the
-    <a href="<?= $this->url('documentation/commands') ?>#build-command">build command</a> within the
-    <code>my-first-website</code> folder:
-</p>
-
-<pre class="language-bash"><code>$ tapestry build</code></pre>
-
-<p>
-
-</p>
+<?php $this->insert('documentation/_partials/building-and-previewing') ?>
