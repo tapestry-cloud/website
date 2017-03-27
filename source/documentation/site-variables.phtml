@@ -6,5 +6,60 @@ title: Site Variables
 <h2>Site Variables</h2>
 
 <ul>
-    <li><a href="#site-variables">Site Variables</a></li>
+    <li><a href="#site-variables">Site Variables</a>
+    <ul>
+        <li><a href="#defining-site-variables">Defining site variables</a>
+        <li><a href="#accessing-site-variables">Accessing site variables</a>
+    </ul>
+    </li>
 </ul>
+
+<h3><a name="site-variables" href="#site-variables">Site Variables</a></h3>
+
+<p>
+    Site variable are global variables that are defined within your projects
+    <a href="<?= $this->site('documentation/configuration') ?>">configuration</a> and accessed using the site
+    <a href="<?= $this->site('documentation/helpers') ?>">helper</a>. These are useful for defining environment specific
+    site variables such as google analytics code.
+</p>
+
+<h4><a name="defining-site-variables" href="#defining-site-variables">Defining site variables</a></h4>
+
+<p>
+    Site variables are defined in your project <a href="<?= $this->url('documentation/configuration') ?>/#accessing-configuration-values">configuration</a>,
+    within the <code>site</code> <em>namespace</em>.
+</p>
+
+<p>
+    For example if you're using PHP configuration files:
+</p>
+
+<pre class="language-php"><code>&lt;?php
+    return [
+        'site' => [
+            'title' => 'tapestry.cloud',
+            'url' => 'http://localhost:3000',
+            'description' => 'Tapestry static site generator.',
+            // ...
+        ]
+    ]
+?&gt;</code></pre>
+
+<p>
+    Or if using YAML configuration files:
+</p>
+
+<pre class="language-yaml"><code>site:
+    title: 'tapestry.cloud'
+    url: 'http://localhost:3000'
+    description: 'Tapestry static site generator.'
+    ...
+</code></pre>
+
+<h4><a name="accessing-site-variables" href="#defining-site-variables">Accessing site variables</a></h4>
+
+<p>
+    Site variables are available from any <code>phtml</code> project file via the
+    <a href="<?= $this->url('documentation/helpers') ?>/#site-variables-helper">site helper</a>; for example if I wanted
+    to output the site title defined above I could do <code class="language-php">&lt;?= $this->site('title') ?&gt;</code>.
+</p>
