@@ -11,4 +11,9 @@ return [
         'author' => 'Simon Dann',
         'email' => 'simon.dann@gmail.com'
     ],
+
+    /*
+     * The site kernel to be loaded during site building
+     */
+    'kernel' => \TapestryCloud\Kernel::class,
 ];
