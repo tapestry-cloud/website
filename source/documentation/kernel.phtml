@@ -6,5 +6,41 @@ title: Kernel
 <h2>Kernel</h2>
 
 <ul>
-    <li><a href="#kernel">Kernel</a></li>
+    <li><a href="#kernel">Kernel</a>
+        <ul>
+            <li><a href="#register-method">Register Method</a></li>
+            <li><a href="#boot-method">Boot Method</a></li>
+        </ul>
+    </li>
 </ul>
+
+<h3><a name="kernel" href="#kernel">Kernel</a></h3>
+
+<p>
+    Think of the project Kernel as the central point from which you can extend and modify Tapestries behaviour. Your
+    project Kernel must implement the KernelInterface which has two public methods <code>register</code> and <code>boot</code>.
+</p>
+
+<p>
+    The project Kernel is loaded and constructed as soon as Tapestry identifies and loads the workspace configuration,
+    with its <code>__construct</code> method auto-wired by Tapestries IoC. This means that your Kernel can within its
+    constructor, require any Tapestry class and it will be automatically injected; your constructor should also be where
+    you include your project specific composer auto-loader, if one is being used.
+</p>
+
+<h4><a name="register-method" href="#register-method">Register Method</a></h4>
+
+<p>
+    The <code>register</code> method of your project Kernel is executed as soon as Tapestry identifies and loads the class.
+    This is one of the first things in Tapestries execution order and therefore the best place to extend Tapestry with your
+    own commands and also where to inject and modify build <a href="<?= $this->url('documentation/steps') ?>">Steps</a>.
+</p>
+
+<h4><a name="boot-method" href="#boot-method">Boot Method</a></h4>
+
+<p>
+    The <code>boot</code> method of your project Kernel is executed by the
+    <a href="<?= $this->url('documentation/commands') ?>/#build-command">build command</a> as part of generating your
+    project; it is here where your <a href="<?= $this->url('documentation/events') ?>">event hooks</a> and build
+    specific extensions should reside.
+</p>
