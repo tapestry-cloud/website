@@ -23,8 +23,8 @@ title: Kernel
 
 <p>
     The project Kernel is loaded and constructed as soon as Tapestry identifies and loads the workspace configuration,
-    with its <code>__construct</code> method auto-wired by Tapestries IoC. This means that your Kernel can within its
-    constructor, require any Tapestry class and it will be automatically injected; your constructor should also be where
+    with its <code>__construct</code> method having the instance of Tapestry injected into it. This provides you direct
+    access to the core of Tapestry within your site Kernel as soon as it is constructed. Your constructor should also be where
     you include your project specific composer auto-loader, if one is being used.
 </p>
 
