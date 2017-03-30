@@ -17,7 +17,123 @@ title: Your Content
 
 <h3><a name="your-content" href="#your-content">Your Content</a></h3>
 
+<p>
+    When building your project, Tapestry buckets files into collections based upon them matching filters for configured
+    <a href="<?= $this->url('documentation/content-types') ?>">content types</a>; by default Tapestry comes with just
+    two content types: <code>blog</code> and <code>default</code>.
+</p>
+
+<p>
+    Essentially if a file doesn't match any configured content type filters then it gets placed into the
+    <code>default</code> collection &ndash; there is no limit on how many content types you add to Tapestry,
+    <a href="<?= $this->url('documentation/content-types') ?>">click here</a> for more information on how
+    they work and examples on how to configure them.
+</p>
+
 <h4><a name="writing-posts" href="#writing-posts">Writing posts</a></h4>
+
+<p>
+    Posts are looked for as files within the <code>source/_blog</code> folder of your project. Tapestry expects the
+    <code>_blog</code> folder to have a flat structure containing markdown files with a filename format of:
+    <code>YYYY-MM-DD-post-title.md</code> &ndash; Tapestry does however support omitting the date in preference
+    of including it within the files <a href="<?= $this->url('documentation/front-matter') ?>">front matter</a>.
+</p>
+
+<h5>A typical post</h5>
+
+<p>
+    The standard blog style post file contains optional front matter and the posts content. If your filename is formatted
+    with the date of publish then including date and title within the files front matter is <em>optional</em>.
+</p>
+
+<pre class="language-markdown"><code>---
+title: "My first post"
+date: 2017-03-30
+categories:
+        - first post
+        - update
+tags:
+        - example
+---
+# My first post
+Paste this within a `.md` file inside your projects `_posts` directory and build your project to see how it gets generated.</code></pre>
+
+<h5>Post Layouts</h5>
+
+<p>
+    The default blog content type is configured to look for a <code>blog.phtml</code> file inside the <code>_views</code>
+    directory of your project. Tapestry will compile the markdown content into HTML and then inject it and the post meta
+    data into the <code>blog.phtml</code>.
+</p>
+
+<p>
+    You can use built in <a href="<?= $this->url('documentation/helpers') ?>/#content-helpers">content helpers</a> to display post content and meta data, e.g:
+</p>
+
+<pre class="language-php"><code>&lt;?php
+// $title is equal to the posts title; this will need passing on to the parent template
+// if you want it to be used for the &lt;title&gt; tag.
+$this->layout('_templates/default', ['title' => $title]);
+?&gt;
+&lt;article&gt;
+    &lt;header&gt;
+        &lt;h1&gt;&lt;?= $title ?>&lt;/h1&gt;
+        &lt;small&gt;Published on &lt;?= $date->format('F jS Y') ?&gt;&lt;/small&gt;
+    &lt;/header&gt;
+    &lt;?= $this->getContent() ?&gt;
+&lt;/article&gt;
+</code></pre>
+
+<h5>Displaying an index of posts</h5>
+
+<p>
+    Collections are accessed by templates through the <code>use</code> front matter property for example:
+</p>
+
+<pre class="language-yaml"><code>---
+use:
+    - blog
+    - blog_categories
+---</code></pre>
+
+<p>
+    The above will prompt Tapestry to inject the template with <code>$blog_items</code> and
+    <code>$blog_categories_items</code>. Note the <em>_items</em> postfix; any content type, or its taxonomy can be
+    requested in this manor, for more details on this mechanism <a href="<?= $this->url('documentation/content-types') ?>">see here</a>.
+</p>
+
+<p>
+    Both variables will be arrays and therefore provide you with the ability to slice, filter and order however you would
+    like, either within the template itself or within a custom <a href="<?= $this->url('documentation/helpers') ?>/#adding-helpers">
+    view helper function</a> that you have created.
+</p>
+
+<p>
+    For example to get the first six posts and pass them to a partial template you can do the following:
+</p>
+
+<pre class="language-php"><code>&lt;?php
+/**
+ * @var \Tapestry\Entities\ViewFile[] $blog_items
+ * @var \Tapestry\Entities\ViewFile $item
+ */
+foreach(array_slice($blog_items, 0, 6) as $item) {
+    echo $this->fetch('_views/article_tile', ['item' => $item]);
+}</code></pre>
+
+<p>
+    Within the <code>_views/article_tile</code> template you can use all the same helpers and variables as you could
+    with the <code>blog.phtml</code> template to access the posts information, except on <code>$item</code> rather than
+    <code>$this</code> &ndash; this is because the <code>$this</code> variable will reference the <code>article_tile</code> file
+    while the <code>$item</code> variable will be the actual blog post in question.
+</p>
+
+<aside class="notice blue">
+    <p>
+        Take a look at the <a href="<?= $this->url('documentation/working-examples') ?>/#blog-project"> blog example project </a>
+        to see documented, code examples of how the aforementioned works.
+    </p>
+</aside>
 
 <h4><a name="creating-pages" href="#creating-pages">Creating pages</a></h4>
 
@@ -34,7 +150,7 @@ title: Your Content
 <aside class="notice blue">
     <p>
         As part of the <a href="https://github.com/carbontwelve/tapestry/milestone/6" target="_blank">1.0.9 milestone</a>
-        for Tapestry auto publishing will be implemented, enabling you to effectively schedule drafts for publishing.
+        due in April 2017; auto publishing will be implemented. Enabling you to effectively schedule drafts for publishing.
     </p>
 </aside>
 
