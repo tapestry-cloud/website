@@ -2,7 +2,7 @@
 @import (inline) "../../../node_modules/basscss/css/basscss.css";
 @import (inline) "../../../node_modules/basscss-btn/css/btn.css";
 @import (inline) "../../../node_modules/basscss-btn-outline/css/btn-outline.css";
-@import (inline) "../../../node_modules/prismjs/themes/prism-solarizedlight.css";
+@import (inline) "../../../node_modules/prismjs/themes/prism.css";
 @import (inline) "../../../node_modules/prism-treeview/prism-treeview.css";
 
 @foreground: #738fa6;
@@ -88,6 +88,22 @@ pre[class*="language-treeview"]{
   line-height: 1rem;
 }
 
+code[class*="language-"], pre[class*="language-"] {
+  color: #464646;
+}
+
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+  background-color: #e4e4e4;
+  border-radius: .4rem;
+}
+
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
+  background: transparent;
+}
+
+.token.regex, .token.important, .token.variable {
+  color: #9c7e0c;
+}
 
 hr {
   height: 1px;
@@ -112,7 +128,7 @@ hr {
     border-color: @brand;
   }
   &.blue{
-    border-color: #1f86ff;
+    border-color: #2f5a8c;
   }
 }
 
