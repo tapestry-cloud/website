@@ -107,15 +107,14 @@ title: Configuration
     for this website defines the following:
 </p>
 <pre class="language-php"><code>&lt;?php
-    return [
-        'site' => [
-            'title' => 'tapestry.cloud',
-            'url' => 'http://localhost:3000',
-            'description' => 'Tapestry static site generator.',
-            // ...
-        ]
+return [
+    'site' => [
+        'title' => 'tapestry.cloud',
+        'url' => 'http://localhost:3000',
+        'description' => 'Tapestry static site generator.',
+        // ...
     ]
-?&gt;</code></pre>
+]</code></pre>
 
 <p>
     Everything within the <em>site</em> namespace is available from the websites template files via the site helper, for
