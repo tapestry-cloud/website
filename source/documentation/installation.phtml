@@ -11,6 +11,7 @@ title: Installation
             <li><a href="#system-requirements">System Requirements</a></li>
             <li><a href="#installing-tapestry-phar">Installing Tapestry .phar</a></li>
             <li><a href="#installing-tapestry-composer">Installing Tapestry Globally via Composer</a></li>
+            <li><a href="#installing-tapestry-source">Installing Tapestry from Source</a></li>
             <li><a href="#upgrading">Upgrading</a></li>
         </ul>
     </li>
@@ -52,6 +53,29 @@ title: Installation
         Now you have installed Tapestry <a href="<?= $this->url('documentation/start-new-website') ?>">click here</a> to learn how to start a new website.
     </p>
 </aside>
+
+<h4><a name="installing-tapestry-source" href="#installing-tapestry-source">Installing Tapestry from Source</a></h4>
+
+<p>
+    Building Tapestry from source requires first installing the <code>box-project/box2</code> tool; please see
+    documentation <a href="https://github.com/box-project/box2" target="_blank">here</a> on how to do so.
+</p>
+
+<p>
+    Once you have the box tool installed, clone the Tapestry repository from Github:
+</p>
+
+<pre class="language-bash"><code>$ git clone https://github.com/carbontwelve/tapestry.git</code></pre>
+
+<p>
+    Next install the dependencies via composer and build using the box command:
+</p>
+
+<pre class="language-bash"><code>$ composer install && composer box</code></pre>
+
+<p>
+    This will result in <code>tapestry.phar</code> being created within the <code>build</code> directory.
+</p>
 
 <h4><a name="upgrading" href="#upgrading">Upgrading</a></h4>
 
