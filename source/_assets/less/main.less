@@ -94,7 +94,7 @@ code[class*="language-"], pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"], pre[class*="language-"] {
   background-color: #e4e4e4;
-  border-radius: .4rem;
+  border-radius: .3rem;
 }
 
 .token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
@@ -188,6 +188,27 @@ nav.main {
 
 article{
   line-height: 1.8rem;
+
+  h1,h2,h3,h4,h5,h5{
+    a{
+      position: relative;
+      &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -1.25em;
+        height: 100%;
+        width: 1em;
+        background: no-repeat 50% 50% / contain;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTc5MiIgaGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMTc5MiAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xNDA4IDI1NmgtMTAyNHYxMjQybDQyMy00MDYgODktODUgODkgODUgNDIzIDQwNnYtMTI0MnptMTItMTI4cTIzIDAgNDQgOSAzMyAxMyA1Mi41IDQxdDE5LjUgNjJ2MTI4OXEwIDM0LTE5LjUgNjJ0LTUyLjUgNDFxLTE5IDgtNDQgOC00OCAwLTgzLTMybC00NDEtNDI0LTQ0MSA0MjRxLTM2IDMzLTgzIDMzLTIzIDAtNDQtOS0zMy0xMy01Mi41LTQxdC0xOS41LTYydi0xMjg5cTAtMzQgMTkuNS02MnQ1Mi41LTQxcTIxLTkgNDQtOWgxMDQ4eiIvPjwvc3ZnPg==');
+        opacity: .3;
+        transition-duration: 200ms;
+      }
+      &:hover:before{
+        opacity: 1;
+      }
+    }
+  }
 }
 
 article h2 + ul {
