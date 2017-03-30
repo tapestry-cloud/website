@@ -93,22 +93,21 @@ title: Helpers
 </p>
 
 <pre class="language-php"><code>&lt;?php namespace TapestryCloud\Lib;
-    use League\Plates\Engine;
-    use League\Plates\Extension\ExtensionInterface;
+use League\Plates\Engine;
+use League\Plates\Extension\ExtensionInterface;
 
-    class TestPlatesExtension implements ExtensionInterface
+class TestPlatesExtension implements ExtensionInterface
+{
+    public function register(Engine $engine)
     {
-        public function register(Engine $engine)
-        {
-            $engine->registerFunction('test', [$this, 'test']);
-        }
-
-        public function test()
-        {
-            return 'hello world!';
-        }
+        $engine->registerFunction('test', [$this, 'test']);
     }
-?&gt;</code></pre>
+
+    public function test()
+    {
+        return 'hello world!';
+    }
+}</code></pre>
 
 <p>
     This simple example renders <code><?= $this->test() ?></code> within the page template in place of
@@ -155,8 +154,7 @@ class Kernel implements KernelInterface
     {
         // ...
     }
-}
-?&gt;</code></pre>
+}</code></pre>
 
 <p>
     Both examples above are included within the
