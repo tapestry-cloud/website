@@ -3,7 +3,7 @@ layout: documentation
 title: Your Content
 ---
 
-<h2>Your Content</h2>
+<h2>Creating Content</h2>
 
 <ul>
     <li><a href="#your-content">Your Content</a>
@@ -23,4 +23,18 @@ title: Your Content
 
 <h4><a name="working-with-drafts" href="#working-with-drafts">Working with drafts</a></h4>
 
+<p>
+    Drafts are files with <code class="language-yaml">draft: true</code> set within their
+    <a href="<?= $this->url('documentation/front-matter') ?>">front matter</a>. Tapestry will not
+    publish files marked as draft unless the environment
+    <a href="<?= $this->url('documentation/configuration') ?>/#core-configuration-values-publish-drafts">configuration</a>
+    for publishing drafts is set to <code class="language-php">true</code>.
+</p>
+
+<aside class="notice blue">
+    <p>
+        As part of the <a href="https://github.com/carbontwelve/tapestry/milestone/6" target="_blank">1.0.9 milestone</a>
+        for Tapestry auto publishing will be implemented, enabling you to effectively schedule drafts for publishing.
+    </p>
+</aside>
 
