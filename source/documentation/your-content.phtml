@@ -7,13 +7,22 @@ title: Your Content
 
 <ul>
     <li><a href="#your-content">Your Content</a>
+        <ul><li><a href="#supported-file-extensions">Supported file extensions</a></li></ul>
+    </li>
+    <li><a href="#writing-posts">Writing posts</a>
         <ul>
-            <li><a href="#writing-posts">Writing posts</a></li>
-            <li><a href="#creating-pages">Creating pages</a></li>
-            <li><a href="#additional-content">Additional Content</a></li>
-            <li><a href="#working-with-drafts">Working with drafts</a></li>
+            <li><a href="#a-typical-post">A typical post</a></li>
+            <li><a href="#post-layouts">Post Layouts</a></li>
+            <li><a href="#displaying-an-index-of-posts">Displaying an index of posts</a></li>
         </ul>
     </li>
+    <li><a href="#creating-pages">Creating pages</a>
+        <ul>
+            <li><a href="#flatten-page-to-root">Flattening pages from subfolders into the root directory</a></li>
+        </ul>
+    </li>
+    <li><a href="#additional-content">Additional Content</a></li>
+    <li><a href="#working-with-drafts">Working with drafts</a></li>
 </ul>
 
 <h3><a name="your-content" href="#your-content">Your Content</a></h3>
@@ -31,7 +40,7 @@ title: Your Content
     they work and examples on how to configure them.
 </p>
 
-<h4><a name="writing-posts" href="#writing-posts">Writing posts</a></h4>
+<h3><a name="writing-posts" href="#writing-posts">Writing posts</a></h3>
 
 <p>
     Posts are looked for as files within the <code>source/_blog</code> folder of your project. Tapestry expects the
@@ -40,7 +49,7 @@ title: Your Content
     of including it within the files <a href="<?= $this->url('documentation/front-matter') ?>">front matter</a>.
 </p>
 
-<h5>A typical post</h5>
+<h4><a name="a-typical-post" href="#a-typical-post">A typical post</a></h4>
 
 <p>
     The standard blog style post file contains optional front matter and the posts content. If your filename is formatted
@@ -59,7 +68,7 @@ tags:
 # My first post
 Paste this within a `.md` file inside your projects `_posts` directory and build your project to see how it gets generated.</code></pre>
 
-<h5>Post Layouts</h5>
+<h4><a name="post-layouts" href="#post-layouts">Post Layouts</a></h4>
 
 <p>
     The default blog content type is configured to look for a <code>blog.phtml</code> file inside the <code>_views</code>
@@ -85,7 +94,7 @@ $this->layout('_templates/default', ['title' => $title]);
 &lt;/article&gt;
 </code></pre>
 
-<h5>Displaying an index of posts</h5>
+<h4><a name="displaying-an-index-of-posts" href="#displaying-an-index-of-posts">Displaying an index of posts</a></h4>
 
 <p>
     Collections are accessed by templates through the <code>use</code> front matter property for example:
@@ -136,18 +145,53 @@ foreach(array_slice($blog_items, 0, 6) as $item) {
     </p>
 </aside>
 
-<h4><a name="creating-pages" href="#creating-pages">Creating pages</a></h4>
+<h3><a name="creating-pages" href="#creating-pages">Creating pages</a></h3>
 
-<h5>Flattening pages from subfolders into the root directory</h5>
+<p>
+    Pages are content files that end up getting placed into the <code>default</code> collection; they can be placed anywhere
+    within your source folder so long as the path is not within you configured
+    <a href="<?= $this->url('documentation/configuration') ?>/#core-configuration-values-ignore">ignore</a> list.
+</p>
 
-<h4><a name="additional-content" href="#additional-content">Additional Content</a></h4>
+<p>
+    Tapestry supports pages with any of the <a href="#supported-file-extensions">supported file extensions</a>; if a file
+    isn't supported by a configured <a href="<?= $this->site('documentation/content-renderers') ?>">renderer</a> then
+    Tapestry will copy it instead.
+</p>
+
+<h4><a name="flatten-page-to-root" href="#flatten-page-to-root">Flattening pages from subfolders into the root directory</a></h4>
+
+<p>
+    If you have your projects pages organised into sub-folders but would like to flatted them into the root folder on
+    build, you need to set the permalink property within the files
+    <a href="<?= $this->url('documentation/front-matter') ?>">front matter</a>:
+</p>
+
+<pre class="language-yaml"><code>---
+title: A super awesome page
+permalink: super.html
+---</code></pre>
+
+<p>
+    This will prompt Tapestry to output the rendered file content to <code>super.html</code> within the root of the
+    build destination folder.
+</p>
+
+<aside class="notice blue">
+    <p>
+        See the <a href="<?= $this->url('documentation/permalinks') ?>/#defining-custom-permalinks">Pretty URLS</a> chapter
+        for more in-depth details on custom permalinks and the available template variables.
+    </p>
+</aside>
+
+<h3><a name="additional-content" href="#additional-content">Additional Content</a></h3>
 
 <p>
     <strong>@todo</strong> in addition to assets (link), users may wish to have a dynamically generated robots.txt
     or atom.xml file. Show examples of both cases.
 </p>
 
-<h4><a name="working-with-drafts" href="#working-with-drafts">Working with drafts</a></h4>
+<h3><a name="working-with-drafts" href="#working-with-drafts">Working with drafts</a></h3>
 
 <p>
     Drafts are files with <code class="language-yaml">draft: true</code> set within their
