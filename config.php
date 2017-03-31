@@ -16,4 +16,8 @@ return [
      * The site kernel to be loaded during site building
      */
     'kernel' => \TapestryCloud\Kernel::class,
+
+    'ignore' => [
+        '_code-examples'
+    ]
 ];

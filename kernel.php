@@ -3,6 +3,7 @@
 use Tapestry\Modules\Kernel\KernelInterface;
 use Tapestry\Plates\Engine;
 use Tapestry\Tapestry;
+use TapestryCloud\Lib\CodeExamplePlatesExtension;
 use TapestryCloud\Lib\TestPlatesExtension;
 
 class Kernel implements KernelInterface
@@ -27,7 +28,9 @@ class Kernel implements KernelInterface
     public function register()
     {
         include (__DIR__ . '/lib/TestPlatesExtension.php');
+        include (__DIR__ . '/lib/CodeExamplePlatesExtension.php');
         $this->engine->loadExtension($this->container->get(TestPlatesExtension::class));
+        $this->engine->loadExtension($this->container->get(CodeExamplePlatesExtension::class));
     }
 
     /**
