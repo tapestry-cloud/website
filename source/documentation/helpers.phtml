@@ -135,12 +135,63 @@ title: Helpers
 </p>
 
 <h4><a name="content-helpers-getDate" href="#content-helpers-getDate">getDate()</a></h4>
+
+<p>
+    This method will return an instance of <code>DateTime</code> with the date value of the file in question. Unless
+    you have set the date value via front matter or within the filename this will equal the last modified timestamp.
+</p>
+
 <h4><a name="content-helpers-taxonomyList" href="#content-helpers-taxonomyList">taxonomyList($name)</a></h4>
+
+<p>
+    This method will return an <code>array</code> containing taxonomy defined for <code class="language-php">$name</code>.
+</p>
+
+<p>
+    e.g. <code class="language-php">&lt;?php= $this->taxonomyList('tags') ?&gt;</code>
+</p>
 <h4><a name="content-helpers-getContent" href="#content-helpers-getContent">getContent()</a></h4>
+
+<p>
+    This method will return the content for the file in question. If the file has yet to be rendered this will return
+    the files content directly from disk.
+</p>
+
 <h4><a name="content-helpers-isPaginated" href="#content-helpers-isPaginated">isPaginated()</a></h4>
+
+<p>
+    This method will return a boolean value telling you if the file in question contains paginated data. If
+    <code class="language-php">true</code> is returned you can then use the <a href="#content-helpers-getData">getData</a>
+    method to obtain the associated Paginator.
+</p>
+
 <h4><a name="content-helpers-hasPreviousNext" href="#content-helpers-hasPreviousNext">hasPreviousNext()</a></h4>
+
+<p>
+    This method will return a boolean value telling you if the file in question contains
+    <code class="language-php">$previous_next</code> data.
+</p>
+
+<p>
+    If <code class="language-php">true</code> is returned you can then use the <a href="#content-helpers-getData">getData</a>
+    method to obtain the associated <code class="language-php">$previous_next</code> value.
+</p>
+
+<aside class="notice blue">
+    <p>
+        Both the <code>isPaginated()</code> and <code>hasPreviousNext()</code> method refer to pagination functionality.
+    </p>
+    <p>
+        For further information visit the <a href="<?= $this->url('documentation/collections') ?>/#pagination">pagination
+            section</a> of the collections chapter.
+    </p>
+</aside>
+
 <h4><a name="content-helpers-isDraft" href="#content-helpers-isDraft">isDraft()</a></h4>
 
+<p>
+    This method will return a boolean value telling you if the file in question is a draft or not.
+</p>
 
 <h3><a name="adding-helpers" href="#adding-helpers">Adding your own helpers</a></h3>
 
