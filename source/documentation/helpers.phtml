@@ -13,7 +13,21 @@ title: Helpers
         </ul>
     </li>
     <li><a href="#content-helpers">Content Helpers</a>
-    <li><a href="#adding-helpers">Adding your own helpers</a>
+        <ul>
+            <li><a href="#content-helpers-getFile">getFile()</a></li>
+            <li><a href="#content-helpers-getData">getData($key, $default = null)</a></li>
+            <li><a href="#content-helpers-getPermalink">getPermalink()</a></li>
+            <li><a href="#content-helpers-getUrl">getUrl()</a></li>
+            <li><a href="#content-helpers-getDate">getDate()</a></li>
+            <li><a href="#content-helpers-taxonomyList">taxonomyList($name)</a></li>
+            <li><a href="#content-helpers-getContent">getContent()</a></li>
+            <li><a href="#content-helpers-isPaginated">isPaginated()</a></li>
+            <li><a href="#content-helpers-hasPreviousNext">hasPreviousNext()</a></li>
+            <li><a href="#content-helpers-isDraft">isDraft()</a></li>
+
+        </ul>
+    </li>
+    <li><a href="#adding-helpers">Adding your own helpers</a></li>
 </ul>
 
 <h3><a name="helpers" href="#helpers">Helpers</a></h3>
@@ -76,6 +90,57 @@ title: Helpers
 </p>
 
 <h3><a name="content-helpers" href="#content-helpers">Content Helpers</a></h3>
+
+<p>
+    While certain variables such as <code>$title</code> are made available to templates by default, it can be
+    difficult to identify certain properties of a page without placing extensive PHP code within your template, often
+    leading to a mess of duplication.
+</p>
+
+<p>
+    To assist with this Tapestry provides a number of <em>content helper functions</em> which can be accessed from
+    <code class="language-php">$this</code>, or from any file within a collection array.
+</p>
+
+<h4><a name="content-helpers-getFile" href="#content-helpers-getFile">getFile()</a></h4>
+<p>
+    This method will return the internal
+    <a href="https://github.com/carbontwelve/tapestry/blob/b9d7e3ce5c0e24809cc7e07591572c171c788ae1/src/Entities/File.php" target="_blank">Tapestry\Entities\File</a>
+    class for the page in question; this is useful if you are writing advanced functionality and need to be able to
+    modify the File class directly.
+</p>
+
+<h4><a name="content-helpers-getData" href="#content-helpers-getData">getData($key, $default = null)</a></h4>
+<p>
+    This method has a mixed return depending upon the value of the file's data found matching the <code class="language-php">$key</code>.
+    In addition to values that Tapestry sets, any <a href="<?= $this->url('documentation/front-matter') ?>">front matter</a>
+    that you set for the file will be made available via this method.
+</p>
+
+<p>
+    By default if a data value is not found matching the provided <code class="language-php">$key</code>, this method will return <code class="language-php">null</code>
+</p>
+
+<h4><a name="content-helpers-getPermalink" href="#content-helpers-getPermalink">getPermalink()</a></h4>
+
+<p>
+    This method will return the compiled permalink for the file in question.
+</p>
+
+<h4><a name="content-helpers-getUrl" href="#content-helpers-getUrl">getUrl()</a></h4>
+
+<p>
+    This method will return the compiled permalink for the file in question as an absolute url. This uses the
+    <a href="#url-helper">URL Helper</a> and as such requires the <code>url</code> site variable be set.
+</p>
+
+<h4><a name="content-helpers-getDate" href="#content-helpers-getDate">getDate()</a></h4>
+<h4><a name="content-helpers-taxonomyList" href="#content-helpers-taxonomyList">taxonomyList($name)</a></h4>
+<h4><a name="content-helpers-getContent" href="#content-helpers-getContent">getContent()</a></h4>
+<h4><a name="content-helpers-isPaginated" href="#content-helpers-isPaginated">isPaginated()</a></h4>
+<h4><a name="content-helpers-hasPreviousNext" href="#content-helpers-hasPreviousNext">hasPreviousNext()</a></h4>
+<h4><a name="content-helpers-isDraft" href="#content-helpers-isDraft">isDraft()</a></h4>
+
 
 <h3><a name="adding-helpers" href="#adding-helpers">Adding your own helpers</a></h3>
 
