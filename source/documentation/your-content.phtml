@@ -40,6 +40,23 @@ title: Your Content
     they work and examples on how to configure them.
 </p>
 
+<h4><a name="supported-file-extensions" href="#supported-file-extensions">Supported file extensions</a></h4>
+
+<p>
+    Out of the box Tapestry comes with <a href="<?= $this->url('documentation/content-renderers') ?>">content renderers</a>
+    that support the following file extensions:
+</p>
+
+<ul>
+    <li><code>.md</code>/<code>.markdown</code></li>
+    <li><code>.htm</code>/<code>.html</code></li>
+    <li><code>.phtml</code></li>
+</ul>
+
+<p>
+    Any file not matching the above extensions will be copied with the same relative path to the build directory.
+</p>
+
 <h3><a name="writing-posts" href="#writing-posts">Writing posts</a></h3>
 
 <p>
@@ -53,7 +70,8 @@ title: Your Content
 
 <p>
     The standard blog style post file contains optional front matter and the posts content. If your filename is formatted
-    with the date of publish then including date and title within the files front matter is <em>optional</em>.
+    with the date of publish then including date and title within the files front matter is <em>optional</em>; however it will
+    take precedent if set.
 </p>
 
 <pre class="language-markdown"><code>---
@@ -187,9 +205,18 @@ permalink: super.html
 <h3><a name="additional-content" href="#additional-content">Additional Content</a></h3>
 
 <p>
-    <strong>@todo</strong> in addition to assets (link), users may wish to have a dynamically generated robots.txt
-    or atom.xml file. Show examples of both cases.
+    In addition to assets, pages, posts and other content types that you may choose to configure; you will likely
+    have additional content files that require generating such as your robots.txt and atom.xml files. Normally due to
+    their extension Tapestry treats these as assets and marks them for copying.
 </p>
+
+<p>
+    However there is a way to have Tapestry generate these files and that is to have them in your source as <code>.phtml</code>
+    and set their permalink to the final file extension. For example the below produces an <code>atom.xml</code> file
+    containing the most recent 10 items from the posts collection:
+</p>
+
+<pre class="language-php"><code><?= $this->codeExample('atom.phtml') ?></code></pre>
 
 <h3><a name="working-with-drafts" href="#working-with-drafts">Working with drafts</a></h3>
 
