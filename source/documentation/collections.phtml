@@ -17,11 +17,119 @@ title: Collections
 <h3><a name="collections" href="#collections">Collections</a></h3>
 
 <p>
-    <strong>@todo</strong> describe what collections are and how to use them within your templates. Link to front matter, content types
-    and content generators for additional reading
+    Collections in Tapestry are essentially arrays containing files, filtered by
+    <a href="<?= $this->url('documentation/content-types') ?>">content type</a>.
+</p>
+
+<p>
+    When Tapestry parses the project source directory it checks to see which content type each file matches before bucketing
+    it into that content types collection.
+</p>
+
+<p>
+    Each content type has at least one collection, that being the collection of files attached to that content type, however
+    if a content type has <a href="<?= $this->url('documentation/taxonomy') ?>">taxonomy</a> configured then it will have
+    additional collections, one for each taxonomy.
+</p>
+
+<p>
+    Collections in Tapestry are handled by the <code>Collection</code> class, which is at current an empty extension of
+    Tapestries <a href="https://github.com/carbontwelve/tapestry/blob/b9d7e3ce5c0e24809cc7e07591572c171c788ae1/src/ArrayContainer.php" target="_blank">ArrayContainer</a>.
 </p>
 
 <h4><a name="request-collections" href="#request-collections">How to request collections</a></h4>
 
+<p>
+    As discussed in previous chapters, Collections are requested by including the <code>use</code> front matter property
+    into your file. For example to request all posts you would do the following:
+</p>
+
+<pre class="language-yaml"><code>---
+use:
+    - blog
+---</code></pre>
+
+<p>
+    This will make available to your template all items within the blog collection as the variable:
+    <code class="language-php">$blog_items</code>. Each item of the <code class="language-php">$blog_items</code>
+    array will be an instance of the
+    <a href="https://github.com/carbontwelve/tapestry/blob/b9d7e3ce5c0e24809cc7e07591572c171c788ae1/src/Entities/ViewFile.php" target="_blank">ViewFile</a>
+    class, and as such has all the <a href="<?= $this->url('documentation/helpers') ?>/#content-helpers">content helpers</a> attached to it.
+</p>
+
+<p>
+    For example:
+</p>
+
+<pre class="language-php"><code>&lt;?php
+foreach ($blog_items as $post) {
+    echo '&lt;p&gt;' . $post->getData('title') .'&lt;/p&gt;';
+}
+</code></pre>
+
+<p>
+    Taxonomy collections behave differently in that they have a <code>key => value</code> relationship; they are requested
+    by the following syntax: <code>{contentTypeName}_{taxonmyName}</code>. For example:
+</p>
+
+<pre class="language-yaml"><code>---
+use:
+    - blog_categories
+---</code></pre>
+
+<p>
+    This will make available to your layout the variable <code class="language-php">$blog_categories</code> containing
+    an array with keys set to the taxonomy classifications and the values set as array's of the content type items
+    belonging to each taxonomy classification.
+</p>
+
+<p>
+    This by itself may not be useful, however paired with the <code>TaxonomyArchiveGenerator</code> you can have Tapestry
+    generate a page for each taxonomy classification with that classification's items injected.
+</p>
+
+<aside class="notice blue">
+    <p>
+        For more information on the <code>TaxonomyArchiveGenerator</code> head over to the
+        <a href="<?= $this->url('documentation/content-generators') ?>">Content Generators</a> chapter; where we discuss
+        internal details of how the generator works with working examples for you to use.
+    </p>
+</aside>
+
 <h4><a name="pagination" href="#pagination">Pagination</a></h4>
 
+<p>
+    Pagination within Tapestry is handled by the <code>PaginationGenerator</code> generator, and is enabled on a file per
+    file basis through the <code>generator</code> property within each files front matter.
+</p>
+
+<p>
+    For example:
+</p>
+
+<pre class="language-yaml"><code>---
+use:
+    - blog
+generator:
+    - PaginationGenerator
+pagination:
+    provider: blog
+    perPage: 6
+---</code></pre>
+
+<p>
+    The above will instruct Tapestry to paginate the blog collection using the current page as the template with a maximum
+    of six items per page. Pagination can be used with any collection made available to the page.
+</p>
+
+<p>
+    When a page is passed through the <code>PaginationGenerator</code> generator it has a <code class="language-php">$pagination</code>
+    variable set. This is an instance of the <code>\Tapestry\Entities\Pagination</code> class which contains many helpful
+    methods for providing pagination output.
+</p>
+
+<hr>
+
+<p>
+    <strong>@todo</strong> extend this with the methods on the Paginator or write a paginator chapter...
+</p>
