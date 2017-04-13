@@ -6,6 +6,6 @@ return [
      */
     'site' => [
         'title' => 'dev.tapestry.cloud',
-        'url' => 'http://dev.tapestry.cloud'
+        'url' => 'https://dev.tapestry.cloud'
     ],
 ];
