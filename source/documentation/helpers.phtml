@@ -24,11 +24,13 @@ title: Helpers
             <li><a href="#content-helpers-isPaginated">isPaginated()</a></li>
             <li><a href="#content-helpers-hasPreviousNext">hasPreviousNext()</a></li>
             <li><a href="#content-helpers-isDraft">isDraft()</a></li>
-
+            <li><a href="#content-helpers-getExcerpt">getExcerpt()</a></li>
         </ul>
     </li>
     <li><a href="#adding-helpers">Adding your own helpers</a></li>
 </ul>
+
+<hr/>
 
 <h3><a name="helpers" href="#helpers">Helpers</a></h3>
 
@@ -88,6 +90,8 @@ title: Helpers
     The source code for the URL helper can be found in <a
             href="https://github.com/carbontwelve/tapestry/blob/master/src/Plates/Extensions/Url.php" target="_blank">/src/Plates/Extensions/Url.php</a>.
 </p>
+
+<hr/>
 
 <h3><a name="content-helpers" href="#content-helpers">Content Helpers</a></h3>
 
@@ -199,6 +203,19 @@ title: Helpers
 <p>
     This method will return a boolean value telling you if the file in question is a draft or not.
 </p>
+
+<h4><a name="content-helpers-getExcerpt" href="#content-helpers-getExcerpt">getExcerpt($limit = 50, $more = '&amp;hellip;')</a></h4>
+
+<p>
+    This method will return an excerpt of the content up to a maximum of <code>$limit</code> characters with <code>$more</code> appended.
+</p>
+
+<p>
+    The character length of this methods output doesn't always match the <code>$limit</code>, but will never exceed it, this is because
+    it generates excerpts with full words.
+</p>
+
+<hr/>
 
 <h3><a name="adding-helpers" href="#adding-helpers">Adding your own helpers</a></h3>
 
