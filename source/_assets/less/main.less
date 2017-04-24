@@ -64,6 +64,25 @@ a {
   color: @brand;
 }
 
+table{
+  border-collapse: collapse;
+
+  thead tr th{
+    padding: 4px 8px;
+    border-bottom: 2px solid @keyline;
+  }
+
+  tbody{
+    tr td{
+      padding: 4px 8px;
+    }
+    tr:nth-child(even) td{
+      background-color: @keyline;
+    }
+  }
+
+}
+
 code {
   font-family: "Roboto Mono", monospace;
   font-size: 0.8em;

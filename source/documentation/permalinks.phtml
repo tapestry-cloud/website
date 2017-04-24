@@ -9,6 +9,7 @@ title: Pretty URLS
     <li><a href="#pretty-urls">Pretty URLS</a>
         <ul>
             <li><a href="#defining-custom-permalinks">Defining custom permalinks</a></li>
+            <li><a href="#permalink-template-variables">Custom permalink template variables</a></li>
         </ul>
     </li>
 </ul>
@@ -21,4 +22,92 @@ title: Pretty URLS
     basic template language that Tapestry uses for permalink generation.
 </p>
 
+<p>
+    Often called "pretty URLs", Tapestry will by default compile your project in a way that removes the need for the
+    <code>.html</code> file extension. For example <code>source/about.phtml</code> will be compiled to
+    <code>build_local/about/index.html</code>, which will be accessible from <code>http://www.example.com/about</code>
+    due to the way that web servers handle default pages.
+</p>
+
+<p>
+    This functionality may be disabled site wide via the <a href="<?= $this->url('/documentation/configuration') ?>/#core-configuration-values-pretty-permalink">pretty permalink</a>
+    configuration property within your <code>config.php</code> or <code>config.yaml</code> file.
+</p>
+
+<p>
+    Or alternatively it may be disabled on a per file basis via setting <code>pretty_permalink</code> to false within the
+    file Frontmatter, e.g:
+</p>
+
+<pre class="language-yaml"><code>---
+    pretty_permalink: false
+---</code></pre>
+
 <h4><a name="defining-custom-permalinks" href="#defining-custom-permalinks">Defining custom permalinks</a></h4>
+
+<p>
+    You can define custom permalinks on a per file basis, this is useful for when you want the file to be output to a
+    particular location or with a certain file extension. For example you may have the source file <code>source/atom.phtml</code>
+    which you want to output to <code>build_local/atom.xml</code>. This would be achieved by setting the following
+    Frontmatter.
+</p>
+
+<pre class="language-yaml"><code>---
+    permalink: atom.xml
+---</code></pre>
+<br>
+<aside class="notice blue">
+    <p>
+        When setting a custom permalink, if you define one without a file extension then pretty permalink compilation is
+        enabled.
+    </p>
+</aside>
+
+<h4><a name="permalink-template-variables" href="#permalink-template-variables">Custom permalink template variables</a></h4>
+
+<p>
+    The following table lists the template variables that are available for your custom permalink property.
+</p>
+
+<table class="fit" width="100%">
+    <thead>
+    <tr>
+        <th class="left-align">Variable</th>
+        <th class="left-align">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>{ext}</code></td>
+            <td>The current file extension.</td>
+        </tr>
+        <tr>
+            <td><code>{filename}</code></td>
+            <td>The current file filename.</td>
+        </tr>
+        <tr>
+            <td><code>{path}</code></td>
+            <td>The current file path.</td>
+        </tr>
+        <tr>
+            <td><code>{year}</code></td>
+            <td>&ndash;</td>
+        </tr>
+        <tr>
+            <td><code>{month}</code></td>
+            <td>&ndash;</td>
+        </tr>
+        <tr>
+            <td><code>{day}</code></td>
+            <td>&ndash;</td>
+        </tr>
+        <tr>
+            <td><code>{page}</code></td>
+            <td>&ndash;</td>
+        </tr>
+        <tr>
+            <td><code>{slug}</code></td>
+            <td>&ndash;</td>
+        </tr>
+    </tbody>
+</table>
