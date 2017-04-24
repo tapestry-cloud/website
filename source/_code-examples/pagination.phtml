@@ -1,0 +1,26 @@
+<?php
+/**
+ * @var \Tapestry\Entities\Pagination $pagination
+ * @var string $permalink
+ */ ?>
+<ul>
+    <!-- If there is a previous page show previous link -->
+    <?php if($previous = $pagination->getPrevious()){ ?>
+        <li><a href="<?= $previous->getUrl() ?>">&larr;</a></li>
+    <?php } ?>
+
+    <!-- For each pages within the current pagination display a numbered link -->
+    <?php foreach($pagination->getPages() as $key => $page) { ?>
+        <!-- If the page is the current page do not link -->
+        <?php if ($page->getUrl() === url($permalink)){ ?>
+            <li><?= $key + 1 ?></li>
+        <?php } else { ?>
+            <li><a href="<?= $page->getUrl() ?>"><?= $key + 1 ?></a></li>
+        <?php } ?>
+    <?php } ?>
+
+    <!-- If there is a next page show next link -->
+    <?php if($next = $pagination->getNext()){ ?>
+        <li><a href="<?= $next->getUrl() ?>">&rarr;</a></li>
+    <?php } ?>
+</ul>
