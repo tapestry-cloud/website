@@ -9,8 +9,8 @@ title: Assets
     <li><a href="#assets">Assets</a>
         <ul>
             <li><a href="#assets-folder-structure">_assets folder structure</a></li>
-            <li><a href="#gulp">Gulp</a></li>
-            <li><a href="#static-assets">Static Assets</a></li>
+            <li><a href="#compiling-assets">Compiling your assets</a></li>
+            <li><a href="#watch-for-changes">Watching for changes</a></li>
         </ul>
     </li>
 </ul>
@@ -19,13 +19,101 @@ title: Assets
 <h3><a name="assets" href="#assets">Assets</a></h3>
 
 <p>
-    <strong>@todo</strong> describe the _assets folder structure and how it is built with the provided gulp tasks; include
-    description about other static assets and how they may be copied into the build directory (still not sure if Tapestry
-    should provide a copy facility on top of ignore, or just ignore and have the task runner do the final copy).
+    By default sites initiated by Tapestries <a href="<?= $this->url('documentation/commands') ?>/#init-command">init command</a>
+    come with support for <a href="https://github.com/laravel/elixir" target="_blank">Laravel Elixir</a>.
 </p>
+
+<p>
+    Elixir is a clean, fluent API for Gulp which came bundled with Laravel versions 5.0 to 5.3; in order to use it you first
+    need to make sure that you have Node.js and NPM installed. Then pull in the dependencies needed to compile your assets:
+</p>
+
+<pre class="language-bash"><code>$ npm install</code></pre>
+
+<p>
+    Each project initiated with Tapestry will have the following Elixir packages installed and configured:
+</p>
+
+<ul>
+    <li>
+        <a href="https://github.com/imagemin/imagemin" target="_blank">imagemin</a>: This attempts to optimise
+        your images, reducing filesize without compromising quality.
+    </li>
+    <li>
+        <a href="http://browserify.org/" target="_blank">browserify</a>: This lets your require modules in the
+        browser by bundling up all of your javascript dependencies.
+    </li>
+    <li>
+        <a href="https://github.com/robrich/gulp-exec" target="_blank">exec</a>: This is used so that gulp can execute
+        Tapestry once all assets have been compiled.
+    </li>
+    <li>
+        <a href="https://www.browsersync.io/" target="_blank">browserSync</a>: This serves your built files locally and
+        refreshes the browser when files have been updated.
+    </li>
+</ul>
 
 <h4><a name="assets-folder-structure" href="#assets-folder-structure">_assets folder structure</a></h4>
 
-<h4><a name="gulp" href="#gulp">Gulp</a></h4>
+<p>
+    The default folder for your projects assets is <code>source/_assets</code>, it has the following folder structure:
+</p>
 
-<h4><a name="static-assets" href="#static-assets">Static Assets</a></h4>
+<pre class="language-treeview">
+<code>webroot/
+└── source/
+    └── _assets/
+        ├── img
+        ├── js
+        └── less
+</code></pre>
+
+<p>
+    Elixir will look for each asset type &ndash; e.g. Less, js, &ndash; in a subfolder named after that asset type; this
+    behavior can be changed but requires additional configuration so is best avoided.
+</p>
+
+<p>
+    Once compiled, Elixir will output each asset type to an appropriate folder within <code>source</code>, e.g. <code>source/css</code>.
+</p>
+
+<h4><a name="compiling-assets" href="#compiling-assets">Compiling your assets</a></h4>
+
+<p>
+    To compile your assets run:
+</p>
+
+<pre class="language-bash"><code>$ gulp</code></pre>
+
+<p>
+    Once gulp has completed it will have already executed Tapestry so your <code>build_local</code> folder will now be
+    up to date with your changes.
+</p>
+
+<aside class="notice blue">
+    <p>
+        You can tell gulp which environment to compile via the <code>--env</code> flag, for example:
+    </p>
+    <pre class="language-bash"><code>$ gulp --env=production</code></pre>
+</aside>
+
+<h4><a name="watch-for-changes" href="#watch-for-changes">Watching for changes</a></h4>
+
+<p>
+    To have Gulp watch your project for changes and compile on demand run:
+</p>
+
+<pre class="language-bash"><code>$ gulp watch</code></pre>
+
+<p>
+    The watch command prompts Elixir to monitor your source folder and recompile each time a file is modified, using the
+    watch command enables BrowserSync; this will open a new browser with the compiled project opened and automatically
+    reload the page each time the project get recompiled.
+</p>
+
+<aside class="notice red">
+    <p>
+        There appears to be a bug in the <code>gulp watch</code> command on Windows where it will not notice <strong>new</strong>
+        files being created. In cases where you have added a new file to your project you will need to restart the watch process.
+    </p>
+</aside>
