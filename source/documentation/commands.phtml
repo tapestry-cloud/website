@@ -29,8 +29,178 @@ title: Commands
 
 <h4><a name="build-command" href="#build-command">Build current Project Workspace</a></h4>
 
+<p>
+    To build a tapestry project, within the projects working directory execute:
+</p>
+
+<pre class="language-bash"><code>$ tapestry build</code></pre>
+
+<p>
+    By default the build command will load the site configuration followed by its kernel and then begin building using
+    the default environment <strong>local</strong>. The compiled project will then be output to a folder called
+    <code>build_local</code> within the current working directory.
+</p>
+
+<p>
+    To change the environment that Tapestry builds the project for use the <code>--env=</code> option, for example:
+</p>
+
+<pre class="language-bash"><code>$ tapestry build --env=development</code></pre>
+
+<p>
+    Tapestry will then output to a folder called <code>build_development</code> within the current working directory.
+</p>
+
+<h5>Changing Source and Destination Paths</h5>
+
+<p>
+    By default the Tapestry Build command will use the current working directory for targeting both source and destination
+    paths.
+</p>
+
+<p>
+    To tell Tapestry to look in a specific source path use the <code>--site-dir</code> option, for example:
+</p>
+
+<pre class="language-bash"><code>$ tapestry build --site-dir=C:\Tapestry\Project\Path</code></pre>
+
+<p>
+    To tell Tapestry to output the compiled files to a specific destination path use the <code>--dist-dir</code> option,
+    for example:
+</p>
+
+<pre class="language-bash"><code>$ tapestry build --dist-dir=C:\An\Output\Path</code></pre>
+
+<hr>
+
+<p>
+    The build command also has several special flags that may be used:
+</p>
+
+<p>
+    <code>--no-write</code>: When set, Tapestry will compile the project but not write the result to disk. This is useful
+    when twinned with the <code>--json</code> flag.
+</p>
+
+<p>
+    <code>--clear</code>: When set, Tapestry will clear the destination path of all files and disable caching.
+</p>
+
+<p>
+    <code>--json</code>: When set, Tapestry will output a .json file containing the current build state. This is useful
+    for third party tools when paired with <code>--no-write</code>.
+</p>
+
+<p>
+    <code>--stopwatch</code>: When set, Tapestry will benchmark the build process, reporting on the total execution time and
+    memory used. This was found to be useful during development and has since been left in.
+</p>
+
 <h4><a name="init-command" href="#init-command">Initiate New Project Workspace</a></h4>
+
+<p>
+    To initiate a new project within an empty path execute:
+</p>
+
+<pre class="language-bash"><code>$ tapestry init</code></pre>
+
+<p>
+    The current working directory must be void of any folders or files otherwise Tapestry will exit with an error.
+</p>
+
+<p>
+    Alternatively to initiate a new project inside a new folder within the current working directory follow the init command
+    with the name argument:
+</p>
+
+<pre class="language-bash"><code>$ tapestry init ProjectName</code></pre>
+
+<p>
+    Tapestry will create a new folder in the current working directory and initiate into it, if the folder exists it must
+    be empty otherwise Tapestry will exit with an error.
+</p>
 
 <h4><a name="self-update-command" href="#self-update-command">Self Update</a></h4>
 
+<p>
+    If you have installed Tapestry via the preferred route of using the phar archive you can check for and subsequently
+    update Tapestry to the most recent build by executing the following:
+</p>
+
+<pre class="language-bash"><code>$ tapestry init self-update</code></pre>
+
+<p>
+    Tapestry will make a backup copy of your current version of Tapestry before downloading and installing in place the new
+    version &ndash; see below for more details on reverting to your previous version.
+</p>
+
+<p>
+    The self update command also has several special flags that may be used:
+</p>
+
+<p>
+    <code>--force</code>: When set, Tapestry will update regardless of whether it is the current version or not.
+</p>
+
+<p>
+    <code>---rollback</code>: When set, Tapestry will rollback to the previous version of Tapestry you had installed. This
+    only works if there is a backup copy available.
+</p>
+
+<p>
+    <code>--clean-backups</code>: When set, Tapestry will delete any backups that were made; using this option will make
+    reverting to a previously installed version impossible.
+</p>
+
 <h3><a name="extending-commands" href="#extending-commands">Adding your own Commands</a></h3>
+
+<p>
+    Adding commands to Tapestry is done on a per project basis and loaded via the
+    <a href="<?= $this->url('documentation/kernel') ?>">Project Kernel</a>, within its <code>register</code> method. For
+    example:
+</p>
+
+<pre class="language-php"><code><?= $this->codeExample('TestCommandKernel.php') ?></code></pre>
+
+<p>
+    Every Tapestry command must extend <code>Tapestry\Console\Commands\Command</code> and implement two methods <code>configure</code>
+    and <code>fire</code>.
+</p>
+
+<aside class="notice blue">
+    <p>
+        Tapestry uses the Symfony Console library to handle command line functionality so for more information on
+        configuring your command see the <a href="http://symfony.com/doc/current/components/console.html" target="_blank">
+            Symfony Console documentation here</a>
+    </p>
+</aside>
+
+<p>
+    While the <code>configure</code> method is part of the Symfony Console base class, the <code>fire</code> method is not;
+    the fire method is called when your command is loaded and the <code>execute</code> method is called. Tapestry operates
+    in this way to add a stopwatch and make both the Input and Output interfaces available to a few helper methods.
+</p>
+
+<p>
+    Below is an example test command, loaded by the previous kernel example:
+</p>
+
+<pre class="language-php"><code><?= $this->codeExample('TestCommand.php') ?></code></pre>
+
+<h5>Command Helper Methods</h5>
+
+<p>
+    The Tapestry Command class makes a few helper methods available to Tapestry commands:
+</p>
+
+<p>
+    <code class="language-php">$this->info($string)</code>: A shortcut for <code class="language-php">$outputInterface->writeln("&lt;info&gt;{$string}&lt;/info&gt;")</code>
+</p>
+
+<p>
+    <code class="language-php">$this->error($string)</code>: A shortcut for <code class="language-php">$outputInterface->writeln('&lt;error&gt;[!]&lt;/error&gt; '.$string);</code>
+</p>
+
+<p>
+    <code class="language-php">$this->panic($string, $code = 1)</code>: A shortcut for <code class="language-php">$this->error($string); exit($code);</code>
+</p>
