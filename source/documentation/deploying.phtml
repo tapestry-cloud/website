@@ -6,5 +6,55 @@ title: Deploying
 <h2>Deploying</h2>
 
 <ul>
-    <li><a href="#deploying">Deploying</a></li>
+    <li><a href="#deploying">Deploying</a>
+    <ul>
+        <li><a href="#deploy-to-server">Your own server</a></li>
+        <li><a href="#deploy-to-github">GitHub Pages</a></li>
+    </ul></li>
 </ul>
+
+<h3><a name="deploying" href="#deploying">Deploying</a></h3>
+
+<p>
+    Because there are already many methods for deploying your website already available, Tapestry currently doesn't have
+    one built in. However since static websites are just HTML supporting assets they are both simple to deploy and cheap
+    to host &ndash; even free in some cases.
+</p>
+
+<h4><a name="deploy-to-server" href="#deploy-to-server">Your own server</a></h4>
+
+<p>
+    Deploying to your own server can be done via FTP, rSync or via many other tools; if you manage your own server then
+    you don't need me teaching you how to suck eggs. However I do recommend adding a deploy gulp task that builds your
+    project for the production environment and then rSyncs the files to your server.
+</p>
+
+<p>
+    It is recommended to create a production environment configuration and then copy the content of <code>build_production</code>
+    to your web hosting's public folder.
+</p>
+
+<pre class="language-bash"><code>$ tapestry build --env=production</code></pre>
+
+<h4><a name="deploy-to-github" href="#deploy-to-github">GitHub Pages</a></h4>
+
+<p>
+    GitHub provides a free static website hosting service called <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+    You get one free site per GitHub account and organization and unlimited sites for each of your projects.
+</p>
+
+<p>
+    To deploy your Tapestry project as your user site create a new repository named <code>&lt;username&gt;.github.io</code> with <strong>&lt;username&gt;</strong>
+    being your GitHub username or organization name. This must exactly match otherwise it wont work.
+</p>
+
+<p>
+    Clone the new repository to your local pc and then execute the tapestry build command with the <code>--dist-dir</code> set to the absolute path of
+    the new repository, e.g:
+</p>
+
+<pre class="language-bash"><code>$ tapestry build --env=production --dist-dir=C:\Users\Username\Documents\username.github.io</code></pre>
+
+<p>
+    Commit the changes and push to GitHub and your changes will be visible at <code>http://&lt;username&gt;.github.io</code>
+</p>
