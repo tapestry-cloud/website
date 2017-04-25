@@ -17,12 +17,6 @@ title: Pretty URLS
 <h3><a name="pretty-urls" href="#pretty-urls">Pretty URLS</a></h3>
 
 <p>
-    <strong>@todo</strong> describe how the configuration setting for pretty urls works and explainm how that can be
-    overloaded on a per file basis through front matter. In addition describe how to define custom permalinks and the
-    basic template language that Tapestry uses for permalink generation.
-</p>
-
-<p>
     Often called "pretty URLs", Tapestry will by default compile your project in a way that removes the need for the
     <code>.html</code> file extension. For example <code>source/about.phtml</code> will be compiled to
     <code>build_local/about/index.html</code>, which will be accessible from <code>http://www.example.com/about</code>
@@ -87,27 +81,27 @@ title: Pretty URLS
         </tr>
         <tr>
             <td><code>{path}</code></td>
-            <td>The current file path.</td>
+            <td>The current files relative path, e.g. <code>/source/folder/file.md</code> -> <code>folder</code></td>
         </tr>
         <tr>
             <td><code>{year}</code></td>
-            <td>&ndash;</td>
+            <td>The year that the file was modified, or if it has a date set via filename or frontmatter method the year that is set.</td>
         </tr>
         <tr>
             <td><code>{month}</code></td>
-            <td>&ndash;</td>
+            <td>The month that the file was modified, or if it has a date set via filename or frontmatter method the month that is set.</td>
         </tr>
         <tr>
             <td><code>{day}</code></td>
-            <td>&ndash;</td>
+            <td>The day that the file was modified, or if it has a date set via filename or frontmatter method the day that is set.</td>
         </tr>
         <tr>
             <td><code>{page}</code></td>
-            <td>&ndash;</td>
+            <td>This is a special tag that is relevant only to paginated pages, it will return the current page number.</td>
         </tr>
         <tr>
             <td><code>{slug}</code></td>
-            <td>&ndash;</td>
+            <td>The current file slug, generated from its title if one is set in the frontmatter or otherwise the filename.</td>
         </tr>
     </tbody>
 </table>
