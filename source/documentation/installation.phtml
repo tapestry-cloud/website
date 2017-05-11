@@ -44,9 +44,16 @@ title: Installation
 
 <h4><a name="installing-tapestry-composer" href="#installing-tapestry-composer">Installing Tapestry Globally via Composer</a></h4>
 
+<aside class="notice red">
+    <p>
+        <strong>Note:</strong> Installation of Tapestry via composer is generally not recommended. If another globally installed
+        application has differing version requirements to those that Tapestry has for the same libraries, composer will fail to
+        install Tapestry.
+    </p>
+</aside>
+
 <p>
-    Installing Tapestry via composer currently has some issues that are as yet to be solved, however if you wish to proceed
-    you can install Tapestry via composer through the following command:
+    You can install Tapestry via composer through the following command:
 </p>
 <pre class="language-bash"><code>$ composer global require carbontwelve/tapestry</code></pre>
 
