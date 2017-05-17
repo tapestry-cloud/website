@@ -1,0 +1,17 @@
+{
+  "name": "carbontwelve/tapestry-cloud-src",
+  "description": "Tapestry Documentation",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Simon Dann",
+      "email": "simon.dann@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Site\\": "lib"
+    }
+  }
+}
