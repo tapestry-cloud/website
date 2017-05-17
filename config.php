@@ -12,8 +12,9 @@ return [
         'email' => 'simon.dann@gmail.com'
     ],
 
-    'asset' => [
-        'manifest_path' => __DIR__ . '/rev-manifest.json'
+    'plugins' => [
+        'code_example_path' => __DIR__ . '/source/_code-examples',
+        'asset_manifest_path' => __DIR__ . '/rev-manifest.json'
     ],
 
     /*
