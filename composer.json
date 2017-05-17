@@ -8,7 +8,9 @@
       "email": "simon.dann@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "tapestry-cloud/asset-plugin": "^1.0"
+  },
   "autoload": {
     "psr-4": {
       "TapestryCloud\\": "lib"
