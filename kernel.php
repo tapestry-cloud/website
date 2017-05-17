@@ -3,11 +3,15 @@
 use Tapestry\Modules\Kernel\KernelInterface;
 use Tapestry\Plates\Engine;
 use Tapestry\Tapestry;
-use TapestryCloud\Lib\CodeExamplePlatesExtension;
-use TapestryCloud\Lib\TestPlatesExtension;
 
 class Kernel implements KernelInterface
 {
+
+    /**
+     * @var Tapestry
+     */
+    private $tapestry;
+
     /**
      * @var Engine
      */
@@ -16,6 +20,7 @@ class Kernel implements KernelInterface
 
     public function __construct(Tapestry $tapestry)
     {
+        $this->tapestry = $tapestry;
         $this->container = $tapestry->getContainer();
         $this->engine = $this->container->get(Engine::class);
     }
@@ -27,10 +32,8 @@ class Kernel implements KernelInterface
      */
     public function register()
     {
-        include (__DIR__ . '/lib/TestPlatesExtension.php');
-        include (__DIR__ . '/lib/CodeExamplePlatesExtension.php');
-        $this->engine->loadExtension($this->container->get(TestPlatesExtension::class));
-        $this->engine->loadExtension($this->container->get(CodeExamplePlatesExtension::class));
+        // Use project autoloader
+        require_once(__DIR__ . '/vendor/autoload.php');
     }
 
     /**
@@ -40,6 +43,8 @@ class Kernel implements KernelInterface
      */
     public function boot()
     {
-        // ...
+        $this->engine->loadExtension($this->container->get(TestPlatesExtension::class));
+        $this->engine->loadExtension($this->container->get(CodeExamplePlatesExtension::class));
+        $this->engine->loadExtension($this->tapestry->getContainer()->get(Helpers::class));
     }
 }
