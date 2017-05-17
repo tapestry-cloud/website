@@ -45,6 +45,6 @@ class Kernel implements KernelInterface
     {
         $this->engine->loadExtension($this->container->get(TestPlatesExtension::class));
         $this->engine->loadExtension($this->container->get(CodeExamplePlatesExtension::class));
-        $this->engine->loadExtension($this->tapestry->getContainer()->get(Helpers::class));
+        $this->tapestry->register(\TapestryCloud\Asset\ServiceProvider::class);
     }
 }

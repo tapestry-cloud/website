@@ -12,6 +12,10 @@ return [
         'email' => 'simon.dann@gmail.com'
     ],
 
+    'asset' => [
+        'manifest_path' => __DIR__ . '/rev-manifest.json'
+    ],
+
     /*
      * The site kernel to be loaded during site building
      */
