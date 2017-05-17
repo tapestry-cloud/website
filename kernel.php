@@ -44,7 +44,7 @@ class Kernel implements KernelInterface
     public function boot()
     {
         $this->engine->loadExtension($this->container->get(TestPlatesExtension::class));
-        $this->engine->loadExtension($this->container->get(CodeExamplePlatesExtension::class));
         $this->tapestry->register(\TapestryCloud\Asset\ServiceProvider::class);
+        $this->tapestry->register(\TapestryCloud\CodeExample\ServiceProvider::class);
     }
 }

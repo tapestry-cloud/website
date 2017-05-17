@@ -9,7 +9,8 @@
     }
   ],
   "require": {
-    "tapestry-cloud/asset-plugin": "^1.0"
+    "tapestry-cloud/asset-plugin": "dev-master",
+    "tapestry-cloud/code-example-plugin": "dev-master"
   },
   "autoload": {
     "psr-4": {
