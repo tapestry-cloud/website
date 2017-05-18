@@ -13,7 +13,7 @@ return [
     ],
 
     'plugins' => [
-        'code_example_path' => __DIR__ . '/source/_code-examples',
+        'code_example_path' => __DIR__ . '/source/_code-examples/',
         'asset_manifest_path' => __DIR__ . '/rev-manifest.json'
     ],
 
