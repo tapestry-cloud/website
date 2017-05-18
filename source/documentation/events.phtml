@@ -18,10 +18,19 @@ title: Events
 
 <h3><a name="events" href="#events">Events</a></h3>
 
-<p>&hellip;</p>
+<p>
+    Events in Tapestry are handled by the <a href="http://event.thephpleague.com/2.0/">league/event</a> package. This
+    provides support for <a href="http://event.thephpleague.com/2.0/listeners/callables/">Closure</a> or
+    <a href="http://event.thephpleague.com/2.0/listeners/classes/">Class</a> based listeners.
+</p>
 
 <h4><a name="before-and-after-steps" href="#before-and-after-steps">Before &amp; After Steps</a></h4>
-<p>&hellip;</p>
+<p>
+    The <a href="<?= $this->url('documentation/steps') ?>#before">Before</a> and
+    <a href="<?= $this->url('documentation/steps') ?>#after">After</a> steps fire events named <code>scripts.before</code>
+    and <code>scripts.after</code>. These are useful for plugin writers because for example you can open a connection
+    to a database or API in the Before and close it in the After.
+</p>
 
 <h4><a name="step-events" href="#step-events">Step Events</a></h4>
 <p>
