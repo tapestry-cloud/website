@@ -26,20 +26,21 @@ title: Installation
 </h4>
 
 <p>
-    Tapestry has few system requirements, it only requires that you have <code>PHP >= 5.6.4</code> installed.
+    Tapestry has few system requirements, it only requires that you have <code>PHP >= 5.6.4</code> installed. Tapestry
+    has been <a href="https://travis-ci.org/carbontwelve/tapestry">tested</a> and passes on PHP versions 5.6 to 7.1.
 </p>
 
 <h4><a name="installing-tapestry-phar" href="#installing-tapestry-phar">Installing Tapestry .phar</a></h4>
 
 <p>
     The preferred method of installing Tapestry is to download the <code>.phar</code> archive available from the projects
-    github releases page <a href="https://github.com/tapestry-cloud/tapestry/releases">here</a>.
+    github releases page <a href="https://github.com/tapestry-cloud/tapestry/releases">here</a> and add it to your PATH.
 </p>
 
 <p>
     Once downloaded unzip the <code>tapestry-x.x.x.zip</code> and place the <code>tapestry.phar</code> and (if on windows) <code>tapestry.bin</code>
     files in to a folder that is within your <code>%PATH%</code>. If completed successfully typing <code>where tapestry</code>
-    on widows or <code>which tapestry</code> on linux will return the location path for where you have installed Tapestry.
+    on widows or <code>which tapestry</code> on linux/unix will return the location path for where you have installed Tapestry.
 </p>
 
 <h4><a name="installing-tapestry-composer" href="#installing-tapestry-composer">Installing Tapestry Globally via Composer</a></h4>
@@ -91,6 +92,11 @@ title: Installation
 <p>
     Upgrading Tapestry to the latest version if installed via the .phar method is as simple as executing the command
     <code>tapestry self-update</code>. Tapestry will then look up its Github releases page and replace itself with the
-    latest version if one is available. The <code>self-update</code> command accepts a <code>--rollback</code> option,
+    latest version if one is available. The <a href="<?= $this->url('documentation/commands') ?>#self-update-command">self-update</a> command accepts a <code>--rollback</code> option,
     which when set will prompt Tapestry to roll back to the previously installed version if it exists.
+</p>
+
+<p>
+    Alternatively if you have installed Tapestry from source then you need to pull down the latest version of master and
+    recompile your version.
 </p>
