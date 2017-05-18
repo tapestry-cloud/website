@@ -8,3 +8,4 @@
 /source/css
 /source/js
 rev-manifest.json
+!.gitignore
