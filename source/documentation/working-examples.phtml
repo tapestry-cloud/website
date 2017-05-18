@@ -14,9 +14,11 @@ title: Working Examples &amp; Plugins
         </ul>
     </li>
     <li><a href="#plugins">Plugins</a>
-    <ul>
-        <li><a href="#asset-plugin">Asset Plugin</a></li>
-    </ul></li>
+        <ul>
+            <li><a href="#asset-plugin">Asset Plugin</a></li>
+            <li><a href="#code-example-plugin">Code Example Plugin</a></li>
+        </ul>
+    </li>
 </ul>
 
 <hr/>
@@ -47,6 +49,12 @@ title: Working Examples &amp; Plugins
     working example of using Tapestry to generate a projects documentation. It is also the repository behind this website.
 </p>
 
+<p>
+    One notable difference between this example and the Blog Theme above is that this documentation doesn't use Elixir.
+    Instead choosing to use verbose gulp tasks. The reason for this is because at the time of development Elixir was
+    removed from being shipped with Laravel versions &ge; 5.4.
+</p>
+
 <h3><a name="plugins" href="#plugins">Plugins</a></h3>
 <p>
     Listed below are a few plugins that have been built to extend the base functionality on Tapestry. If you have written
@@ -69,4 +77,22 @@ title: Working Examples &amp; Plugins
 <p>
     This works in a similar same way as the <code>exlixir('css/all.css')</code> helper in Laravel 5.3, more details of which
     can be found <a href="https://laravel.com/docs/5.3/elixir#versioning-and-cache-busting">here</a>.
+</p>
+
+<h4><a name="code-example-plugin" href="#code-example-plugin">Code Example Plugin</a></h4>
+
+<p>
+    The <a href="https://github.com/tapestry-cloud/code-example-plugin">code example plugin</a> makes adding large code
+    examples to your pages painless by encoding html entities for loaded examples. It was first written to be used by
+    this documentation.
+</p>
+
+<p>
+    It's used by first configuring the plugin to where you store your examples. For example this documentation stores its
+    code examples in <a href="https://github.com/tapestry-cloud/tapestry-cloud-src/tree/master/source/_code-examples">source/_code-examples</a>.
+</p>
+
+<p>
+    A code example is then loaded into your page via the codeExample helper. For
+    example <code class="language-php">&lt;?= $this->codeExample('example.php') ?&gt;</code>
 </p>
