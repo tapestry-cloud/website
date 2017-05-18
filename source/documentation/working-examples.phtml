@@ -1,27 +1,72 @@
 ---
 layout: documentation
-title: Working Examples
+title: Working Examples &amp; Plugins
 ---
 
-<h2>Working Examples</h2>
+<h2>Working Examples &amp; Plugins</h2>
 
 <ul>
     <li><a href="#working-examples">Working Examples</a>
         <ul>
             <li><a href="#default-scaffold-project">Default Scaffold Project</a></li>
-            <li><a href="#blog-project">Blog Project</a></li>
+            <li><a href="#blog-theme">Blog Theme</a></li>
             <li><a href="#tapestry-documentation-project">Tapestry Documentation Project</a></li>
         </ul>
     </li>
+    <li><a href="#plugins">Plugins</a>
+    <ul>
+        <li><a href="#asset-plugin">Asset Plugin</a></li>
+    </ul></li>
 </ul>
 
 <hr/>
 
 <h3><a name="working-examples" href="#working-examples">Working Examples</a></h3>
 <p>
-    ...
+    Listed below are a few working examples of Tapestry in the wild. If you have used Tapestry for a project where the
+    source is publicly available, why not fork this documentation and make a
+    <a href="https://github.com/tapestry-cloud/tapestry-cloud-src/pulls">pull request</a> to add it here.
 </p>
 
 <h4><a name="default-scaffold-project" href="#default-scaffold-project">Default Scaffold Project</a></h4>
-<h4><a name="blog-project" href="#blog-project">Blog Project</a></h4>
+<p>
+    The default project scaffold that comes shipped with Tapestry is a very thin example of the default directory structure
+    that makes up a Tapestry project. For more information on the default scaffold project
+    <a href="<?= $this->url('documentation/start-new-website') ?>#workspace-scaffold">click here</a>.
+</p>
+
+<h4><a name="blog-theme" href="#blog-theme">Blog Theme</a></h4>
+<p>
+    The <a href="https://github.com/tapestry-cloud/tapestry-blog-theme">Tapestry Blog Theme</a> was created to be a working
+    example of using Tapestry as the backend for your blog.
+</p>
+
 <h4><a name="tapestry-documentation-project" href="#tapestry-documentation-project">Tapestry Documentation Project</a></h4>
+<p>
+    The <a href="https://github.com/tapestry-cloud/tapestry-cloud-src">Tapestry Documentation Project</a> is a
+    working example of using Tapestry to generate a projects documentation. It is also the repository behind this website.
+</p>
+
+<h3><a name="plugins" href="#plugins">Plugins</a></h3>
+<p>
+    Listed below are a few plugins that have been built to extend the base functionality on Tapestry. If you have written
+    a plugin for Tapestry that is publicly available, why not fork this documentation and make a
+    <a href="https://github.com/tapestry-cloud/tapestry-cloud-src/pulls">pull request</a> to add it here.
+</p>
+
+<h4><a name="asset-plugin" href="#asset-plugin">Asset Plugin</a></h4>
+
+<p>
+    The <a href="https://github.com/tapestry-cloud/asset-plugin">asset plugin</a> twins with the gulp task
+    <a href="https://www.npmjs.com/package/gulp-rev">gulp-rev</a> to make using static asset versioning a piece of cake.
+</p>
+
+<p>
+    It's used by first configuring the plugin to where gulp-rev stores the asset manifest file and then replacing
+    references to gulp-rev managed assets with <code class="language-php">&lt;?= $this->asset('all.css') ?&gt;</code>.
+</p>
+
+<p>
+    This works in a similar same way as the <code>exlixir('css/all.css')</code> helper in Laravel 5.3, more details of which
+    can be found <a href="https://laravel.com/docs/5.3/elixir#versioning-and-cache-busting">here</a>.
+</p>

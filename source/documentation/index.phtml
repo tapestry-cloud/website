@@ -41,27 +41,27 @@ title: Quickstart Guide
 
 <p>
     There are <a href="<?= $this->url('documentation/installation') ?>">multiple methods</a> of installing Tapestry, the
-    quickest is installing globally via Composer:
+    preferred method of installing Tapestry is to download the <code>.phar</code> archive available from the projects
+    github releases page <a href="https://github.com/tapestry-cloud/tapestry/releases">here</a> and placing it into
+    your <code>PATH</code>.
 </p>
 
-<pre class="language-bash"><code>$ composer global require tapestry-cloud/tapestry</code></pre>
+<p>
+    Once downloaded unzip the <code>tapestry-x.x.x.zip</code> and place the <code>tapestry.phar</code> and (if on windows)
+    <code>tapestry.bin</code> files in to a folder that is within your <code>%PATH%</code>. If completed successfully
+    typing <code>where tapestry</code> on widows or <code>which tapestry</code> on linux will return the location path
+    for where you have installed Tapestry.
+</p>
 
 <p>
     To test that you have successfully installed Tapestry you can run <code>tapestry --version</code> in your terminal and
-    you should see <code>Tapestry version <?= \Tapestry\Tapestry::VERSION ?>, environment local</code> in return.
+    you should see something similar to <code>Tapestry version <?= \Tapestry\Tapestry::VERSION ?>, environment local</code> in return.
 </p>
-
-<aside class="notice blue">
-    <p>
-        If you prefer not to install via composer, you can download Tapestry as a .phar
-        <a href="https://github.com/tapestry-cloud/tapestry/releases" target="_blank">here</a>.
-    </p>
-</aside>
 
 <h4><a name="first-website" href="#first-website">Scaffold your first website</a></h4>
 
 <p>
-    Tapestry comes with a basic project scaffold built in, if you have Tapestry installed globally you can simply run:
+    Tapestry comes with a basic project scaffold built in, to initiate your first Tapestry project run:
 </p>
 
 <pre class="language-bash"><code>$ tapestry init my-first-website</code></pre>
@@ -70,6 +70,13 @@ title: Quickstart Guide
     Tapestry will create the folder <em>my-first-website</em> within the current working directory and scaffold into it
     the default project directory structure.
 </p>
+
+<aside class="notice blue">
+    <p>
+        For more information on the <code>init</code> command
+        <a href="<?= $this->url('/documentation/commands') ?>#init-command">click here</a>.
+    </p>
+</aside>
 
 <p>
     The default project scaffold, for convenience comes with Laravel Elixir bundled in; before we continue you will need
