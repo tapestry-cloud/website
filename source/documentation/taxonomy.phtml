@@ -17,8 +17,56 @@ title: Taxonomy
 <hr/>
 
 <h3><a name="taxonomy" href="#taxonomy">Taxonomy</a></h3>
-<p>&hellip;</p>
+<p>
+    Taxonomy in Tapestry is bound to <a href="<?= $this->url('documentation/content-types') ?>">Content Types</a> via each
+    Content Types configuration. They are used to primarily <em>classify</em> pages into separate <em>taxonomies</em>.
+</p>
+
 <h4><a name="defining-taxonomy-for-content-types" href="#defining-taxonomy-for-content-types">Defining Taxonomy for content types</a></h4>
-<p>&hellip;</p>
+<p>
+    The configuration for each <a href="<?= $this->url('documentation/content-types') ?>#configuration">Content Type</a> has the
+    configuration key <code>taxonomies</code>. This must always be an array, however it doesn't have to have any elements.
+</p>
+
+<p>
+    The <em>blog</em> Content Type that ships with Tapestry by default comes pre-configured with two taxonomies: categories and tags,
+    therefore its taxonomies configuration looks like the following:
+</p>
+
+<pre class="language-php"><code>...
+    'taxonomies' => [
+        'tags',
+        'categories'
+    ]
+...</code></pre>
+
+<p>
+    These can then be used to categorise and tag posts within their Front Matter like so:
+</p>
+
+<pre class="language-yaml"><code>---
+categories:
+    - ocean animals
+tags:
+    - under water
+    - blue
+    - aquatic
+---</code></pre>
+
 <h4><a name="using-taxonomy-in-your-layouts" href="#using-taxonomy-in-your-layouts">Using Taxonomy in your layouts</a></h4>
-<p>&hellip;</p>
+<p>
+    Taxonomy is used in layouts via requesting content type taxonomy collections. This is done within the Front Matter of
+    your page by using the following syntax: <code>{contentTypeName}_{taxonmyName}</code>. For example:
+</p>
+
+<pre class="language-yaml"><code>---
+use:
+    - blog_tags
+---
+&lt;? var_dump($blog_tags); ?&gt;
+</code></pre>
+
+<p>
+    This can be paired with the <a href="<?= $this->url('documentation/content-generators') ?>#taxonomy-archive-generator">TaxonomyArchiveGenerator</a>
+    to generate archive pages for your websites taxonomy.
+</p>
