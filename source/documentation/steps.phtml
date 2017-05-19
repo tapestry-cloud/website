@@ -31,12 +31,28 @@ title: Steps
 <hr/>
 
 <h3><a name="steps" href="#steps">Steps</a></h3>
-<p>&hellip;</p>
+<p>
+    Steps are one of the first things loaded into the IoC as part of the core boot process within Tapestry. They are
+    handled by the <a href="https://github.com/tapestry-cloud/tapestry/blob/master/src/Providers/CompileStepsServiceProvider.php">CompileStepsServiceProvider</a>
+    class and injected into the <a href="<?= $this->url('documentation/container') ?>">Container</a> with the alias <code>Compile.Steps</code>
+</p>
+
+<p>
+    Tapestry comes shipped with the following sixteen steps configured:
+</p>
 
 <h4><a name="boot-kernel" href="#boot-kernel">BootKernel</a></h4>
-<p>&hellip;</p>
+<p>
+    The workspace Kernel is already registered with the Container by the ProjectKernelServiceProvider at which point its
+    <code>register</code> method is executed. Upon invocation the BootKernel step requests the Kernel from the Container
+    and executes its <code>boot</code> method.
+</p>
 <h4><a name="read-cache" href="#read-cache">ReadCache</a></h4>
-<p>&hellip;</p>
+<p>
+    The ReadCache step initiates and loads the caching sub system before injecting it into the Project class with the alias
+    of <code>cache</code>. This step also has the task of invalidating the entire cache upon any of the configuration files
+    or the version of Tapestry changing.
+</p>
 <h4><a name="before" href="#before">Before</a></h4>
 <p>&hellip;</p>
 <h4><a name="clear" href="#clear">Clear</a></h4>
