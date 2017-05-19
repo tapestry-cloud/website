@@ -8,6 +8,8 @@ title: Content Types
 <ul>
     <li><a href="#content-types">Content Types</a>
         <ul>
+            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#using-content-types-in-your-templates">Using Content Types in your templates</a></li>
             <li><a href="#the-default-content-type">The default blog content type</a></li>
             <li><a href="#defining-your-own-content-types">Defining your own content types</a></li>
         </ul>
@@ -17,7 +19,154 @@ title: Content Types
 <hr/>
 
 <h3><a name="content-types" href="#content-types">Content Types</a></h3>
-<p>&hellip;</p>
+<p>
+    Content Types are used by Tapestry to segment source files into <a href="<?= $this->url('/documentation/collections/') ?>">Collections</a>.
+    The <a href="<?= $this->url('/documentation/steps/') ?>#load-content-types">LoadContentTypes</a> uses the site
+    configuration to identify and load Content Types for the current workspace.
+</p>
+
+<p>
+    By default Tapestry ships with two Content Types baked in: <em>default</em> and <em>blog</em>. You can make changes
+    to the blog Content Type via overwriting its configuration within your sites configuration file. The
+    <em>default</em> Content Type is used when a source file doesn't fit into any other configured Content Type.
+</p>
+
+<h4><a name="configuration" href="#configuration">Configuration</a></h4>
+
+<pre class="language-php"><code>'content_types' => [
+    'blog' => [
+        'path'       => '_blog',
+        'template'   => 'blog',
+        'permalink'  => 'blog/{year}/{slug}.html',
+        'enabled'    => true,
+        'taxonomies' => [
+            'tags',
+            'categories',
+        ],
+    ],
+],</code></pre>
+
+<p>
+    <strong>Name</strong>: You can see from the above that the key for the Content Type configuration is the
+    name of the content type, in the case of the above this is "blog".
+</p>
+
+<p>
+    <strong>Path</strong>: The path is where Tapestry should look to <em>collect</em> files for this Content Type. We use
+    a path beginning with an underscore so that it's ignored for regular parsing, that way the file only gets added to
+    this Content Type.
+</p>
+
+<p>
+    Files within <em>path</em> can be any that are supported by Tapestries
+    <a href="<?= $this->url('documentation/content-renderers') ?>">Content Renderers</a>.
+</p>
+
+<p>
+    <strong>Template</strong>: This is the file name of the template that Tapestry should use for each content found
+    in <em>path</em>. This file is looked for within the <code>source/_views</code> folder. In the example above Tapestry
+    will parse each file found within <code>source/_blog</code> and for each file inject its rendered content into
+    <code>source/_views/blog.phtml</code>. To give an analogy to WordPress, the <strong>Template</strong> is the same as
+    <code>single.php</code> in the template hierarchy.
+</p>
+
+<p>
+    The <em>template</em> property can be over-written on a per file basis, if for example you want to use a certain
+    view to wrap some posts but not others.
+</p>
+
+<p>
+    <strong>Permalink</strong>: This is the <a href="<?= $this->url('documentation/permalinks') ?>">permalink</a> that
+    gets injected into every File within a Content Type. As per the <em>template</em> this property can also be over-written
+    on a per file basis.
+</p>
+
+<p>
+    <strong>Enabled</strong>: When set to <code>false</code> Tapestry will ignore the Content Type and not parse any files
+    that would be segmented into its Collection.
+</p>
+
+<p>
+    <strong>Taxonomies</strong>: This array contains a list of the taxonomies that you are using within this content type.
+    Tapestry looks for these keys within the <a href="<?= $this->url('documentation/front-matter') ?>">Front Matter</a>
+    of each file in the Content Types <em>path</em> and adds them to the taxonomy collection if found.
+</p>
+
+<h4><a name="using-content-types-in-your-templates" href="#using-content-types-in-your-templates">Using Content Types in your templates</a></h4>
+<aside class="notice blue">
+    <p>
+        Content Types in Tapestry do not do anything other than inject shared meta in to each File added to their Collection
+        and create additional Collections for segmenting files by taxonomy. To be able to use this data you need to request
+        the Content Types Collection in your template.
+    </p>
+    <p>
+        For more information <a href="<?= $this->url('documentation/collections') ?>#request-collections">click here</a>.
+    </p>
+</aside>
+
+<p>
+    Looking at the <a href="https://github.com/tapestry-cloud/tapestry-blog-theme">Tapestry Blog Theme</a> example repository
+    you will see that within the source folder there is a folder named <code>blog</code>:
+</p>
+
+<pre class="language-treeview">
+<code>webroot/
+└── source/
+    └── blog/
+        ├── categories/
+        |   └── category.phtml
+        ├── categories.phtml
+        ├── tags.phtml
+        └──  index.phtml
+</code>
+</pre>
+
+<p>
+    <strong>index.phtml</strong>: This demonstrates a blog archive page that is available via the url <em>example.com/blog</em>.
+    You can see that it uses the main collection from the <em>blog</em> Content Type. This means that the variable
+    <code class="language-php">$blog_items</code> containing an array of all the <em>blog</em> collection items will be
+    injected into the template.
+</p>
+
+<p>
+    <strong>tags.phtml &amp; categories.phtml</strong>: These files demonstrate index pages that list all the tags and
+    categories within the <em>blog</em> Content Type. Each using <code>blog_tags &amp; blog_categories</code> respectively
+    they have the variables <code class="language-php">$blog_categories_items</code> and <code class="language-php">$blog_tags_items</code>
+    injected into their templates.
+</p>
+
+<p>
+    The main difference between using the main Collection of a Content Type as opposed to one of its taxonomy collections
+    is that the later does not inject a plain array containing instances of the ViewFile class. Instead it contains a
+    multi-dimensional array with the outer array keys being of all the classifications used for that Taxonomy.
+</p>
+
+<p>For example:</p>
+<pre class="language-php"><code>[
+    'fish' => [ ... ],
+    'mammals' => [ ... ],
+    'birds' => [ ... ],
+    'insects' => [ ... ],
+]</code></pre>
+
+<br>
+
+<aside class="notice red">
+    <p>
+        Note, this is functionality that may change in the future with Collection Type taxonomy collections being passed
+        to templates via a ViewTaxonomy wrapper class with similar helpers to the ViewFile class.
+    </p>
+    <p>
+        See <a href="https://github.com/tapestry-cloud/tapestry/issues/197">this issue</a> for more information.
+    </p>
+</aside>
+
+<p>
+    <strong>categories/category.phtml</strong>: This template demonstrates using the blog categories taxonomy collection
+    and passing it to the TaxonomyArchiveGenerator and PaginationGenerator generators to generate a paginated archive of
+    blog items organised by category.
+</p>
+
 <h4><a name="the-default-content-type" href="#the-default-content-type">The default blog content type</a></h4>
 <p>&hellip;</p>
 <h4><a name="defining-your-own-content-types" href="#defining-your-own-content-types">Defining your own content types</a></h4>
