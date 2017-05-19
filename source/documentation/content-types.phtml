@@ -10,8 +10,6 @@ title: Content Types
         <ul>
             <li><a href="#configuration">Configuration</a></li>
             <li><a href="#using-content-types-in-your-templates">Using Content Types in your templates</a></li>
-            <li><a href="#the-default-content-type">The default blog content type</a></li>
-            <li><a href="#defining-your-own-content-types">Defining your own content types</a></li>
         </ul>
     </li>
 </ul>
@@ -117,9 +115,7 @@ title: Content Types
         |   └── category.phtml
         ├── categories.phtml
         ├── tags.phtml
-        └──  index.phtml
-</code>
-</pre>
+        └──  index.phtml</code></pre>
 
 <p>
     <strong>index.phtml</strong>: This demonstrates a blog archive page that is available via the url <em>example.com/blog</em>.
@@ -163,11 +159,54 @@ title: Content Types
 
 <p>
     <strong>categories/category.phtml</strong>: This template demonstrates using the blog categories taxonomy collection
-    and passing it to the TaxonomyArchiveGenerator and PaginationGenerator generators to generate a paginated archive of
-    blog items organised by category.
+    and passing it to the TaxonomyArchiveGenerator and PaginationGenerator <a href="<?= $this->url('documentation/content-generators') ?>">Generators</a>
+    to generate a paginated archive of blog items organised by category.
 </p>
 
-<h4><a name="the-default-content-type" href="#the-default-content-type">The default blog content type</a></h4>
-<p>&hellip;</p>
-<h4><a name="defining-your-own-content-types" href="#defining-your-own-content-types">Defining your own content types</a></h4>
-<p>&hellip;</p>
+<p>
+    In this example the original <code>category.phtml</code> never gets directly parsed to an output file and is instead
+    used as a template by the TaxonomyArchiveGenerator to generate a set of pages one for each classification. Without the
+    PaginationGenerator this would result in an output similar to the following:
+</p>
+
+<pre class="language-treeview">
+<code>build_local/
+└── blog/
+    ├── fish/
+    |   └── index.html
+    ├── mammals/
+    |   └── index.html
+    ├── birds/
+    |   └── index.html
+    └── insects/
+        └── index.html</code></pre>
+
+<p>
+    For each category a page will be generated with the <code>$blog_categories</code> variable injected containing an
+    array of ViewFiles for each File within that taxonomy classification. When paired with the PaginationGenerator
+    then each classification will be paginated resulting in output similar to the following:
+</p>
+
+<pre class="language-treeview">
+<code>build_local/
+└── blog/
+    ├── fish/
+    |   ├── 3.html
+    |   ├── 2.html
+    |   └── index.html
+    ├── mammals/
+    |   └── index.html
+    ├── birds/
+    |   ├── 2.html
+    |   └── index.html
+    └── insects/
+        ├── 4.html
+        ├── 3.html
+        ├── 2.html
+        └── index.html</code></pre>
+
+<p>
+    Now instead of accessing items via <code>$blog_categories</code> you do so via the injected Pagination class via the
+    <code>$pagination</code> variable. For more information on how to set up and use the pagination functionality,
+    <a href="<?= $this->url('documentation/collections') ?>#pagination">click here</a>.
+</p>

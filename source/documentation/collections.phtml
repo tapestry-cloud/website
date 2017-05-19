@@ -131,9 +131,36 @@ pagination:
 ---</code></pre>
 
 <p>
-    The above will instruct Tapestry to paginate the blog collection using the current page as the template with a maximum
-    of six items per page. Pagination can be used with any collection made available to the page.
+    The above will instruct Tapestry to paginate the <em>blog</em> collection using the current page as the template
+    with a maximum of six items per page. This will result in final output similar to the following:
 </p>
+
+<pre class="language-treeview">
+<code>build_local/
+└── blog/
+    ├── fish/
+    |   ├── 3.html
+    |   ├── 2.html
+    |   └── index.html
+    ├── mammals/
+    |   └── index.html
+    ├── birds/
+    |   ├── 2.html
+    |   └── index.html
+    └── insects/
+        ├── 4.html
+        ├── 3.html
+        ├── 2.html
+        └── index.html</code></pre>
+
+<br>
+
+<aside class="notice blue">
+    <p>
+        Pagination can be used with any collection made available to the page. For more information on using content types
+        in templates <a href="<?= $this->url('documentation/content-types') ?>#using-content-types-in-your-templates">click here</a>.
+    </p>
+</aside>
 
 <p>
     When a page is passed through the <code>PaginationGenerator</code> generator it has a <code class="language-php">$pagination</code>
