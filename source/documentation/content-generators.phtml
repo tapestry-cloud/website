@@ -18,9 +18,48 @@ title: Content Generators
 <hr/>
 
 <h3><a name="content-generators" href="#content-generators">Content Generators</a></h3>
-<p>&hellip;</p>
+<p>
+    Content Generators in Tapestry are classes that take an input template file and output a number of generated files.
+    Content Generators are loaded by a template file via its Front Matter. For example:
+</p>
+
+<pre class="language-yaml"><code>generator:
+    - PaginationGenerator</code></pre>
+
+<p>
+    In cases where multiple generators are attached to a File, they are then executed in the order that they are set
+    within the Front Matter. The output of the first generator will then be used as the input to the next. This is useful
+    for paginating taxonomy archives.
+</p>
+
 <h4><a name="collection-item-generator" href="#collection-item-generator">Collection Item Generator</a></h4>
-<p>&hellip;</p>
+<p>
+    The <a href="https://github.com/tapestry-cloud/tapestry/blob/master/src/Entities/Generators/CollectionItemGenerator.php">Collection
+    Item Generator</a> was written as part of making Tapestry <em>blog aware</em>. By design it is supposed to be used
+    with a Content Type's template to allow a blog post page to know which post came before and after it.
+</p>
+
+<p>
+    It is added to a template via the following Front Matter:
+</p>
+
+<pre class="language-yaml"><code>generator:
+    - CollectionItemGenerator</code></pre>
+
+<p>
+    When executed it will identify a files previous and next sibling within the files Content Type and assign to the file
+    an instance of the <a href="<?= $this->url('documentation/collections') ?>#pagination-helpers">Paginator</a> class to
+    the variable <code>$previous_next</code>.
+</p>
+
+<p>
+    Previous and next siblings are identified by their date. With Collections such as the one associated to the <em>blog</em>
+    Content Type being ordered by a fixed date that you define (either via filename or Front Matter,) this can be deterministic.
+    However if this generator is used on a file within a Collection such as the one associated to the <em>default</em>
+    Content Type then the sibling order can become non-deterministic due to each file having its date set to the last time
+    the file was edited.
+</p>
+
 <h4><a name="pagination-generator" href="#pagination-generator">Pagination Generator</a></h4>
 <p>&hellip;</p>
 <h4><a name="taxonomy-archive-generator" href="#taxonomy-archive-generator">Taxonomy Archive Generator</a></h4>
