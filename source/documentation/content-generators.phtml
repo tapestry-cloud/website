@@ -9,8 +9,8 @@ title: Content Generators
     <li><a href="#content-generators">Content Generators</a>
         <ul>
             <li><a href="#collection-item-generator">Collection Item Generator</a></li>
-            <li><a href="#pagination-generator">Pagination Generator</a></li>
             <li><a href="#taxonomy-archive-generator">Taxonomy Archive Generator</a></li>
+            <li><a href="#pagination-generator">Pagination Generator</a></li>
         </ul>
     </li>
 </ul>
@@ -53,14 +53,101 @@ title: Content Generators
 </p>
 
 <p>
-    Previous and next siblings are identified by their date. With Collections such as the one associated to the <em>blog</em>
-    Content Type being ordered by a fixed date that you define (either via filename or Front Matter,) this can be deterministic.
-    However if this generator is used on a file within a Collection such as the one associated to the <em>default</em>
-    Content Type then the sibling order can become non-deterministic due to each file having its date set to the last time
-    the file was edited.
+    By default unless explicitly declared via filename or Front Matter methods a File in tapestry will have its date property
+    set to the last edit time of that source file.
 </p>
 
-<h4><a name="pagination-generator" href="#pagination-generator">Pagination Generator</a></h4>
-<p>&hellip;</p>
+<p>
+    This means that only Collections containing files that have had their date's set via either the filename or front
+    matter methods will have deterministic ordering of their items. For example the Collection associated with the
+    <em>blog</em> Content Type.
+</p>
+
 <h4><a name="taxonomy-archive-generator" href="#taxonomy-archive-generator">Taxonomy Archive Generator</a></h4>
-<p>&hellip;</p>
+<p>
+    The <a href="https://github.com/tapestry-cloud/tapestry/blob/master/src/Entities/Generators/TaxonomyArchiveGenerator.php">Taxonomy Archive Generator</a>
+    expects to be invoked on a page that has requested a Content Types taxonomy Collection. For example:
+</p>
+
+<pre class="language-yaml"><code>use:
+    - blog_categories
+generator:
+    - TaxonomyArchiveGenerator</code></pre>
+
+<p>
+    It will generate one File for each taxonomy classification found and inject into it the classifications name set to
+    the variable <code>$taxonomyName</code> and an array of ViewFiles for the Files found within that classification.
+</p>
+
+<p>
+    Once the generated files have been through the Compile task the following output file structure will be generated:
+</p>
+
+<pre class="language-treeview"><code>source/
+└── a-folder/
+    └── categories.phtml
+build_local/
+└── a-folder/
+    ├── fish/
+    |   └── index.html
+    ├── mammals/
+    |   └── index.html
+    ├── birds/
+    |   └── index.html
+    └── insects/
+        └── index.html</code></pre>
+
+<h4><a name="pagination-generator" href="#pagination-generator">Pagination Generator</a></h4>
+<p>
+    The <a href="https://github.com/tapestry-cloud/tapestry/blob/master/src/Entities/Generators/PaginationGenerator.php">Pagination Generator</a>
+    is the only Generator to ship with Tapestry that also requires configuration. It operates upon a collection that the
+    input file has requested and also requires to be told which collection and how many items per page via Front Matter
+    settings. For example:
+</p>
+
+<pre class="language-yaml"><code>use:
+    - blog_categories
+generator:
+    - TaxonomyArchiveGenerator
+    - PaginationGenerator
+pagination:
+    provider: blog_categories
+    perPage: 3</code></pre>
+
+<br>
+
+<aside class="notice blue">
+    <p>
+        Note, the ordering of generators is important as they are executed in the order that they are defined.
+    </p>
+</aside>
+
+<p>
+    The pagination generator is configured via the <em>pagination</em> Front Matter key, defining the collection to be
+    worked on via <code>provider</code> and items per page via <code>perPage</code>.
+</p>
+
+<p>
+    In the case of the above example once the generated file have been through the Compile task, the following output
+    file structure will be generated:
+</p>
+
+<pre class="language-treeview"><code>source/
+    └── a-folder/
+        └── categories.phtml
+build_local/
+    └── blog/
+    ├── fish/
+    |   ├── 3.html
+    |   ├── 2.html
+    |   └── index.html
+    ├── mammals/
+    |   └── index.html
+    ├── birds/
+    |   ├── 2.html
+    |   └── index.html
+    └── insects/
+    ├── 4.html
+    ├── 3.html
+    ├── 2.html
+    └── index.html</code></pre>
