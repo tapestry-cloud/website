@@ -19,11 +19,60 @@ title: Writing Plugins
 
 <h3><a name="writing-plugins" href="#writing-plugins">Writing Plugins</a></h3>
 
-<p>&hellip;</p>
+<p>
+    Plugins are loaded on a per Project bases through the <a href="<?= $this->url('documentation/kernel') ?>">Project Kernel</a>.
+    Ideally each plugin will have a Service Provider that hooks into the <a href="<?= $this->url('documentation/container') ?>">IoC</a>
+    and loads the plugin into the work space. When initiated by the Project Kernel <code>boot</code> method a plugin
+    will have full access to the entire core of Tapestry and be able to extend or replace any component.
+</p>
+
+<aside class="notice blue">
+    <p>
+        An example skeleton plugin is available <a href="https://github.com/tapestry-cloud/skeleton-plugin">here on GitHub</a>.
+    </p>
+    <p>
+        Alternatively you can <a href="<?= $this->url('documentation/working-examples') ?>#plugins">click here</a> to
+        see a list of plugins already developed for Tapestry.
+    </p>
+</aside>
 
 <h4><a name="plugin-folder-structure" href="#plugin-folder-structure">Plugin folder structure</a></h4>
-<p>&hellip;</p>
+<p>
+    To keep things consistent each plugin should follow the below folder structure:
+</p>
+
+<pre class="language-treeview"><code>webroot/
+├── src/
+|   ├── ServiceProvider.php
+|   └── ...
+├── README.md
+└── composer.json</code></pre>
+
 <h4><a name="service-providers" href="#service-providers">Service Providers</a></h4>
-<p>&hellip;</p>
+<p>
+    The most consistent method of loading your project into Tapestry is via a Service Provider. The IoC in Tapestry is
+    provided by the <a href="http://container.thephpleague.com/">PHP League container library</a> and so each Service
+    Provider class must extend <code>League\Container\ServiceProvider\AbstractServiceProvider</code>.
+</p>
+
+<p>
+    Because Tapestry plugins require booting upon registration the plugin service provider also must implement the
+    <code>League\Container\ServiceProvider\BootableServiceProviderInterface</code>.
+</p>
+
+<p>
+    An example of this can be seen in the <a href="https://github.com/tapestry-cloud/skeleton-plugin">Skeleton Plugin example here</a>.
+</p>
+
 <h4><a name="installing-your-plugin" href="#installing-your-plugin">Installing your plugin</a></h4>
-<p>&hellip;</p>
+<p>
+    Plugins should be registered with <a href="https://packagist.org/">packagist.org</a> enabling them to be imported into
+    users project via use of <a href="https://getcomposer.org/">composer</a>.
+</p>
+
+<p>
+    Once imported into a Tapestry project your plugin can be installed by registering its Service Provider within the
+    <code>boot</code> method of the project Kernel, for example:
+</p>
+
+<pre class="language-php"><code><?= $this->codeExample('KernelLoadPlugin.php') ?></code></pre>
