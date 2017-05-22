@@ -9,7 +9,8 @@ return [
         'url' => 'http://localhost:3000',
         'description' => 'Tapestry static site generator.',
         'author' => 'Simon Dann',
-        'email' => 'simon.dann@gmail.com'
+        'email' => 'simon.dann@gmail.com',
+        'google-analytics' => null
     ],
 
     'plugins' => [
