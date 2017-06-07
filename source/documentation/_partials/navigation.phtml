@@ -1,0 +1,14 @@
+<?php if (isset($menuItems)) { ?>
+    <ul>
+        <?php foreach ($menuItems as $name => $items) { ?>
+        <li>
+            <span><?= $name ?></span>
+            <ul>
+                <?php foreach ($items as $title => $href) { ?>
+                <li <?= ($this->url($href) === $currentUrl) ? 'class="current"' : '' ?>><a href="<?= $this->url($href) ?>" title="<?= $title ?>"><?= $title ?></a></li>
+                <?php } ?>
+            </ul>
+        </li>
+        <?php } ?>
+    </ul>
+<?php } ?>
