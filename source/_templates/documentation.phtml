@@ -1,18 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title><?= (isset($title) ? ($title . ' &mdash; ' . $this->site('title')) : $this->site('title')); ?></title>
-    <meta title="description" content="<?= (isset($description) ? $description : $this->site('description')); ?>">
-    <link type="text/css" rel="stylesheet" href="<?= $this->asset('css/main-min.css') ?>"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
-    <link type="image/x-icon" rel="icon" href="<?= $this->url('img/favicon.ico') ?>"/>
-    <meta title="author" content="<?= (isset($author) ? $author : $this->site('author')); ?>>">
+
+    <meta name="author" content="<?= (isset($author) ? $author : $this->site('author')); ?>>">
+    <meta name="description" content="<?= trim(preg_replace('/\s+/', ' ',(isset($description) ? $description : $this->getExcerpt(160)))) ?>" />
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="generator" content="tapestry"/>
+    <meta name="generator" content="tapestry.cloud"/>
+    <link rel="canonical" href="<?= $this->getUrl() ?>" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="<?= $this->url('img/favicon.ico') ?>"/>
+
+    <!-- Rich Link Preview -->
+    <meta property="og:title" content="<?= (isset($title) ? ($title . ' &mdash; ' . $this->site('title')) : $this->site('title')); ?>" />
+    <meta property="og:description" content="<?= trim(preg_replace('/\s+/', ' ',(isset($description) ? $description : $this->getExcerpt(160)))) ?>" />
+    <meta property="og:image" content="<?= $this->url('img/twitter-card.png') ?>" />
+    <meta property="og:url" content="<?= $this->getUrl() ?>" />
+    <!-- ./ rich link preview -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="<?= $this->site('twitter-card.site') ?>" />
+    <meta name="twitter:creator" content="<?= $this->site('twitter-card.creator') ?>" />
+    <meta name="twitter:title" content="<?= (isset($title) ? ($title . ' &mdash; ' . $this->site('title')) : $this->site('title')); ?>" />
+    <meta name="twitter:description" content="<?= trim(preg_replace('/\s+/', ' ',(isset($description) ? $description : $this->getExcerpt(160)))) ?>" />
+    <meta name="twitter:image" content="<?= $this->url('img/twitter-card.png') ?>" />
+    <!-- ./ twitter card -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="<?= $this->asset('css/main-min.css') ?>"/>
 </head>
 <body>
-
 <header>
     <section class="nav-bar">
         <div class="max-width-4 mx-auto flex" style="height: 100%;">

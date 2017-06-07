@@ -11,6 +11,10 @@ return [
         'author' => 'Simon Dann',
         'email' => 'simon.dann@gmail.com',
         'google-analytics' => null,
+        'twitter-card' => [
+            'site' => '@carbontwelve',
+            'creator' => '@carbontwelve'
+        ],
         'documentation-menu' => [
 
             'Getting Started' => [
