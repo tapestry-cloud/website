@@ -45,7 +45,7 @@ var verbose = argv.verbose || false;
 gutil.log('Environment', chalk.magenta(env));
 
 gulp.task('tapestry', function (cb) {
-    var cmd = 'tapestry build' + ((verbose) ? '' : ' --quiet') +' --env=' + env;
+    var cmd = 'tapestry build' + ((verbose) ? '' : ' --quiet --clear') +' --env=' + env;
     gutil.log('Executing:', chalk.magenta(cmd));
     exec(cmd, function (err, stdout, stderr) {
         if (verbose && stdout.length > 0){
