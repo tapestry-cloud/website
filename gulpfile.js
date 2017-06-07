@@ -105,7 +105,7 @@ gulp.task('less-min', ['less'], function() {
         .pipe(plumber({errorHandler: onError}))
         .pipe(sourcemaps.init())
         .pipe(cleanCSS())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({suffix: '-min'}))
         .pipe(rev())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./source/css'))
