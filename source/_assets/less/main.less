@@ -114,6 +114,11 @@ section.dual-color{
   overflow: hidden;
   font-size: 0.95em;
 
+  .row-container{
+    display: flex;
+    padding: 0 3rem;
+  }
+
   &:before{
     content: "";
     display: block;
@@ -450,6 +455,60 @@ footer{
 
   p a:hover, p a:visited:hover{
     color: @light;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.dual-color{
+    background: @brand-blue;
+    color: @light;
+    height: auto;
+    overflow: visible;
+
+    &:before, &:after{
+      display:none;
+    }
+
+    .row-container{
+      display: block;
+    }
+
+    .col-6{
+      width: 100%;
+      margin: 0 0 4rem 0;
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  header{
+    section.nav-bar{
+      padding: 0 10px;
+    }
+    section.hero{
+      background-position: 20% 0;
+    }
+  }
+  section.dual-color:before{
+    width: 65%;
+  }
+  section.dual-color:after{
+    width: 70%;
+    transform: skew(0deg,-71deg);
+  }
+}
+
+@media screen and (min-width:1025px) and (max-width: 1440px){
+  header{
+    section.hero{
+      background-position: 20% 0;
+    }
+  }
+
+  section.dual-color:after{
+    width: 72%;
+    transform: skew(0deg,-65deg);
   }
 }
 
