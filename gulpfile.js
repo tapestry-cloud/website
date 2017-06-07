@@ -45,7 +45,7 @@ var verbose = argv.verbose || false;
 gutil.log('Environment', chalk.magenta(env));
 
 gulp.task('tapestry', function (cb) {
-    var cmd = 'tapestry build' + ((verbose) ? '' : ' --quiet') +' --env=' + env;
+    var cmd = 'tapestry build' + ((verbose) ? '' : ' --quiet --clear') +' --env=' + env;
     gutil.log('Executing:', chalk.magenta(cmd));
     exec(cmd, function (err, stdout, stderr) {
         if (verbose && stdout.length > 0){
@@ -105,7 +105,7 @@ gulp.task('less-min', ['less'], function() {
         .pipe(plumber({errorHandler: onError}))
         .pipe(sourcemaps.init())
         .pipe(cleanCSS())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({suffix: '-min'}))
         .pipe(rev())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./source/css'))

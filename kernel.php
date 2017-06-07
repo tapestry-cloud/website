@@ -1,5 +1,6 @@
 <?php namespace TapestryCloud;
 
+use Tapestry\Entities\Configuration;
 use Tapestry\Modules\Kernel\KernelInterface;
 use Tapestry\Plates\Engine;
 use Tapestry\Tapestry;
@@ -46,5 +47,21 @@ class Kernel implements KernelInterface
         $this->engine->loadExtension($this->container->get(TestPlatesExtension::class));
         $this->tapestry->register(\TapestryCloud\Asset\ServiceProvider::class);
         $this->tapestry->register(\TapestryCloud\CodeExample\ServiceProvider::class);
+
+        // Inverse the documentation menu for breadcrumb lookup
+        /** @var Configuration $config */
+        $config = $this->container->get(Configuration::class);
+
+        $arr = [];
+        foreach ($config->get('site.documentation-menu', []) as $parent => $children) {
+            foreach ($children as $child => $item) {
+                    $arr[base64_encode(url($item))] = [
+                        $parent,
+                        $child
+                    ];
+            }
+        }
+
+        $config->set('site.documentation-menu-breadcrumb-lookup', $arr);
     }
 }
