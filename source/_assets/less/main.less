@@ -5,6 +5,262 @@
 @import (inline) "../../../node_modules/prismjs/themes/prism.css";
 @import (inline) "../../../node_modules/prism-treeview/prism-treeview.css";
 
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black');
+
+@dark: #202024;
+@light: #fafaf8;
+@brand: #ff331f;
+@keyline: #e0e0e0;
+
+.max-width-4{
+  max-width: 1180px;
+}
+
+body {
+  font-family: Roboto, serif;
+  color: @dark;
+  background: @light;
+  line-height: 1.3em;
+}
+
+header{
+  .nav-bar{
+    height: 53px;
+    background: #f4f4f4;
+
+    nav{
+      font-size: 0.9em;
+      a {
+        display: inline-block;
+        &> img {
+          display: block;
+        }
+      }
+
+      ul >li {
+        display: inline-block;
+        a.btn{
+          font-weight: lighter;
+
+          &.btn-link{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .hero{
+    height: 489px;
+    background: @dark url('../img/hero.jpg') no-repeat right;
+
+    h1,h2{
+      font-family: 'Archivo Black', sans-serif;
+    }
+
+    h1{
+      line-height: 1.2em;
+      margin: 90px 0 0 0;
+      color: @light;
+      span{
+        color: @brand;
+      }
+    }
+
+    h2{
+      color: @light;
+      line-height: 1.4em;
+      font-size: 1.1em;
+    }
+
+    hr{
+      width: 40px;
+      height: 4px;
+      background: @brand;
+      border: none;
+      display: block;
+      margin: 30px 0 15px 0;
+    }
+  }
+}
+
+section.dual-color{
+  background: #FFF;
+  padding: 4rem 0;
+  height: 425px;
+  position: relative;
+  overflow: hidden;
+  font-size: 0.95em;
+
+  &:before{
+    content: "";
+    display: block;
+    background: #00b290;
+    width: 64%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  &:after{
+    content: "";
+    display: block;
+    background: #FFF;
+    width: 72%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    transform: skew(0deg,-55deg);
+  }
+
+  & > div{
+    z-index: 2;
+    position: relative;
+  }
+
+  h3{
+    font-weight: normal;
+  }
+
+}
+
+section.red{
+  color:@light;
+  background: @brand;
+
+  hr{
+    width: 70px;
+    height: 4px;
+    background: @light;
+    border: none;
+    display: block;
+    margin: 30px 0 15px 0;
+  }
+
+  p a, h2 span{
+    color: #040032;
+  }
+
+  p a:hover{
+    color: @light;
+  }
+
+}
+
+.code-box{
+  width: 100%;
+  box-shadow: 0 0 10px 0 rgba(7, 16, 19, 0.58);
+  border: 1px solid #0072c6;
+  position: relative;
+  padding-top:31px;
+  &:before{
+    color: @dark;
+    content: "Terminal";
+    font-size: 0.8rem;
+    padding: 6px;
+    position: absolute;
+    width: ~"calc(100% - 12px)";
+    height: 18px;
+    left: 0;
+    top: 0;
+    background: white url(../img/topbar.gif) top right no-repeat;
+    border-bottom: 1px solid #d4d4d4;
+  }
+
+  pre[class*="language-"].mono{
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.8rem;
+    padding: 10px;
+    color: @keyline;
+    background: #0D0106;
+    margin: 0;
+
+    code[class*="language-"]{
+      text-shadow: none;
+      color: @light;
+
+      .token.operator{
+        background: none;
+      }
+    }
+  }
+
+}
+
+.mono{
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.8rem;
+  padding: 10px;
+  color: @keyline;
+  background: #0D0106;
+
+  span{
+    color: @brand;
+  }
+}
+
+
+.btn.brand{
+  background: @brand;
+  color: @light;
+  font-weight: lighter;
+  font-size: 0.9em;
+
+  &:hover, &:visited:hover{
+    color: @light;
+    background: darken(@brand, 18%)
+  }
+}
+
+.brand{
+  color: @brand;
+}
+
+.light{
+  color: @light;
+}
+
+.justify{
+  text-align: justify;
+  text-align-last: left;
+}
+
+a{
+  transition-duration: 300ms;
+}
+
+p{
+  font-size: 1em;
+  line-height: 1.4em;
+
+  &.large{
+    font-size: 1.1rem;
+    line-height: 1.7rem;
+  }
+
+  a, a:visited{
+    color: @brand;
+
+    &:hover{
+      color: @dark;
+    }
+  }
+}
+
+footer{
+  background: @dark;
+  color: @light;
+
+  p a:hover, p a:visited:hover{
+    color: @light;
+  }
+}
+
+/*
 @foreground: #738fa6;
 @background: #fff0d5;
 @hover: #466277;
@@ -14,7 +270,6 @@
 @light: #fafaf8;
 @keyline: #e0e0e0;
 
-/*
 .code-box{
   width: 100%;
   box-shadow: 0 0 10px 0 rgba(7, 16, 19, 0.58);
