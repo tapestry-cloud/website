@@ -55,7 +55,7 @@ class Kernel implements KernelInterface
         $arr = [];
         foreach ($config->get('site.documentation-menu', []) as $parent => $children) {
             foreach ($children as $child => $item) {
-                    $arr[url($item)] = [
+                    $arr[base64_encode(url($item))] = [
                         $parent,
                         $child
                     ];

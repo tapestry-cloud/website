@@ -29,7 +29,7 @@
             </nav>
         </div>
     </section>
-    <?php if ($breadcrumbs = $this->site('documentation-menu-breadcrumb-lookup.'. $this->getUrl(), null)) { ?>
+    <?php if ($breadcrumbs = $this->site('documentation-menu-breadcrumb-lookup.'. base64_encode($this->getUrl()), null)) { ?>
     <section class="breadcrumbs overflow-auto">
         <div class="max-width-4 mx-auto">
             <ul class="small">
