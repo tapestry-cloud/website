@@ -1,47 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
-    <meta charset="utf-8">
-    <title><?= (isset($title) ? ($title . ' &mdash; ' . $this->site('title')) : $this->site('title')); ?></title>
-    <meta title="description" content="<?= (isset($description) ? $description : $this->site('description')); ?>">
-    <link type="text/css" rel="stylesheet" href="<?= $this->asset('css/main.css') ?>" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
-    <link type="image/x-icon" rel="icon" href="<?= $this->url('img/favicon.ico') ?>"/>
-    <meta title="author" content="<?= (isset($author) ? $author : $this->site('author')); ?>>">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="generator" content="tapestry"/>
-</head>
-<body class="text-center">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<header class="main">
-    <div class="max-width-4 mx-auto flex">
-        <div class="flex-auto">
-            <div class="brand flex-none">
-                <h1 class="caps"><a href="<?= $this->url() ?>">Tapestry</a></h1>
-                <small>Build static sites with PHP Plates</small>
+    <title><?= (isset($title) ? ($title . ' &mdash; ' . $this->site('title')) : $this->site('title')); ?></title>
+
+    <meta name="author" content="<?= (isset($author) ? $author : $this->site('author')); ?>>">
+    <meta name="description" content="<?= trim(preg_replace('/\s+/', ' ',(isset($description) ? $description : $this->getExcerpt(160)))) ?>" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="tapestry.cloud"/>
+    <link rel="canonical" href="<?= $this->getUrl() ?>" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="<?= $this->url('img/favicon.ico') ?>"/>
+
+    <!-- Rich Link Preview -->
+    <meta property="og:title" content="<?= (isset($title) ? ($title . ' &mdash; ' . $this->site('title')) : $this->site('title')); ?>" />
+    <meta property="og:description" content="<?= trim(preg_replace('/\s+/', ' ',(isset($description) ? $description : $this->getExcerpt(160)))) ?>" />
+    <meta property="og:image" content="<?= $this->url('img/twitter-card.png') ?>" />
+    <meta property="og:url" content="<?= $this->getUrl() ?>" />
+    <!-- ./ rich link preview -->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="<?= $this->site('twitter-card.site') ?>" />
+    <meta name="twitter:creator" content="<?= $this->site('twitter-card.creator') ?>" />
+    <meta name="twitter:title" content="<?= (isset($title) ? ($title . ' &mdash; ' . $this->site('title')) : $this->site('title')); ?>" />
+    <meta name="twitter:description" content="<?= trim(preg_replace('/\s+/', ' ',(isset($description) ? $description : $this->getExcerpt(160)))) ?>" />
+    <meta name="twitter:image" content="<?= $this->url('img/twitter-card.png') ?>" />
+    <!-- ./ twitter card -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="<?= $this->asset('css/main-min.css') ?>"/>
+</head>
+<body>
+
+<header>
+    <section class="nav-bar">
+        <div class="max-width-4 mx-auto flex" style="height: 100%;">
+            <div class="flex-auto items-center left">
+                <a href="<?= $this->url() ?>" title="Tapestry">
+                    <img src="<?= $this->url('img/logo.png') ?>" alt="Tapestry" title="Tapestry"/>
+                </a>
+            </div>
+            <nav class="flex items-center right">
+                <ul class="list-reset list-inline m0">
+                    <li class="m0"><a href="<?= $this->url('documentation') ?>" class="btn btn-link">Documentation</a></li>
+                    <li class="m0"><a href="https://github.com/tapestry-cloud/tapestry/releases" class="btn brand">Download</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <section class="hero">
+        <div class="max-width-4 mx-auto flex" style="height: 100%;">
+            <div class="flex-none" style="margin-left: 3rem;">
+                <h1>It's another<br><span>Static Site Generator&hellip;</span></h1><br>
+                <h2>&hellip; except this one uses the<br>PHP plates template system!</h2>
+                <hr>
+                <a href="<?= $this->url('documentation') ?>" class="btn brand">Find out more</a>
             </div>
         </div>
-        <nav class="flex items-center right">
-            <ul class="list-reset list-inline m0">
-                <li class="m0"><a href="https://github.com/tapestry-cloud/tapestry/releases" class="btn btn-link">Download</a></li>
-                <li class="m0"><a href="<?= $this->url('documentation') ?>" class="btn btn-outline">Documentation</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <div class="max-width-4 mx-auto">
-        <div class="center fit" style="margin-top: 3rem;margin-bottom: 6rem;">
-            <h1 style="font-weight: lighter;">It's <em>another</em> Static Site Generator&hellip;</h1>
-            <h3 style="font-weight: lighter;">&hellip; except this one uses the PHP Plates template system!</h3>
-        </div>
-    </div>
+    </section>
 </header>
 
-<main class="max-width-4 mx-auto px3">
+<main>
     <?= $this->section('content') ?>
 </main>
 
-<footer class="main py3">
+<footer class="py3">
     <p class="center">
         &copy; <?= date('Y') ?> Simon Dann, Tapestry is licensed under the <a href="https://github.com/tapestry-cloud/tapestry/blob/master/LICENSE" target="_blank">MIT License.</a>
     </p>
@@ -49,16 +76,24 @@
         See an error or would like to contribute to this documentation? The source is <a href="https://github.com/tapestry-cloud/tapestry-cloud-src" target="_blank">available over on github</a>.
     </p>
 </footer>
-<?php if ($this->site('google-analytics')) { ?>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', '<?= $this->site('google-analytics') ?>', 'auto');
-    ga('send', 'pageview');
-</script>
+<?php if ($this->site('google-analytics')) { ?>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', '<?= $this->site('google-analytics') ?>', 'auto');
+        ga('send', 'pageview');
+    </script>
 <?php } ?>
 <script src="<?= $this->asset('js/all.js') ?>" type="application/javascript"></script>
 </body>
