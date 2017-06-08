@@ -38,8 +38,8 @@
 
 <header>
     <section class="nav-bar">
-        <div class="max-width-4 mx-auto flex" style="height: 100%;">
-            <div class="flex-auto items-center left">
+        <div class="content max-width-4 mx-auto flex">
+            <div class="logo flex-auto items-center left">
                 <a href="<?= $this->url() ?>" title="Tapestry">
                     <img src="<?= $this->url('img/logo.png') ?>" alt="Tapestry" title="Tapestry"/>
                 </a>
@@ -54,7 +54,7 @@
     </section>
     <section class="hero">
         <div class="max-width-4 mx-auto flex" style="height: 100%;">
-            <div class="flex-none" style="margin-left: 3rem;">
+            <div class="content">
                 <h1>It's another<br><span>Static Site Generator&hellip;</span></h1><br>
                 <h2>&hellip; except this one uses the<br>PHP plates template system!</h2>
                 <hr>
@@ -69,12 +69,14 @@
 </main>
 
 <footer class="py3">
-    <p class="center">
-        &copy; <?= date('Y') ?> Simon Dann, Tapestry is licensed under the <a href="https://github.com/tapestry-cloud/tapestry/blob/master/LICENSE" target="_blank">MIT License.</a>
-    </p>
-    <p class="center">
-        See an error or would like to contribute to this documentation? The source is <a href="https://github.com/tapestry-cloud/tapestry-cloud-src" target="_blank">available over on github</a>.
-    </p>
+    <div style="padding: 0 3rem;">
+        <p class="center">
+            &copy; <?= date('Y') ?> Simon Dann, Tapestry is licensed under the <a href="https://github.com/tapestry-cloud/tapestry/blob/master/LICENSE" target="_blank">MIT License.</a>
+        </p>
+        <p class="center">
+            See an error or would like to contribute to this documentation? The source is <a href="https://github.com/tapestry-cloud/tapestry-cloud-src" target="_blank">available over on github</a>.
+        </p>
+    </div>
 </footer>
 
 <?php if ($this->site('google-analytics')) { ?>
@@ -94,6 +96,16 @@
         ga('create', '<?= $this->site('google-analytics') ?>', 'auto');
         ga('send', 'pageview');
     </script>
+    <!-- Twitter universal website tag code -->
+    <script>
+        !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+        },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+            a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+        // Insert Twitter Pixel ID and Standard Event data below
+        twq('init','nxk9f');
+        twq('track','PageView');
+    </script>
+    <!-- End Twitter universal website tag code -->
 <?php } ?>
 <script src="<?= $this->asset('js/all.js') ?>" type="application/javascript"></script>
 </body>
