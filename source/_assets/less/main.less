@@ -29,6 +29,10 @@ header{
     height: 53px;
     background: #f4f4f4;
 
+    .content{
+      height: 100%;
+    }
+
     nav{
       font-size: 0.9em;
       a {
@@ -76,6 +80,10 @@ header{
     height: 489px;
     background: @dark url('../img/hero.jpg') no-repeat right;
 
+    .content{
+      margin-left: 3rem;
+    }
+
     h1,h2{
       font-family: 'Archivo Black', sans-serif;
     }
@@ -113,6 +121,11 @@ section.dual-color{
   position: relative;
   overflow: hidden;
   font-size: 0.95em;
+
+  .row-container{
+    display: flex;
+    padding: 0 3rem;
+  }
 
   &:before{
     content: "";
@@ -450,6 +463,115 @@ footer{
 
   p a:hover, p a:visited:hover{
     color: @light;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section.dual-color{
+    background: @brand-blue;
+    color: @light;
+    height: auto;
+    overflow: visible;
+
+    &:before, &:after{
+      display:none;
+    }
+
+    .row-container{
+      display: block;
+    }
+
+    .col-6{
+      width: 100%;
+      margin: 0 0 4rem 0;
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .xs-col-12{
+    width: 100%;
+  }
+
+  header {
+    section.hero {
+      font-size: 0.7em;
+      height: 360px;
+
+      h1{
+        margin-top:75px;
+      }
+    }
+
+    .nav-bar {
+      height:auto;
+
+      .content{
+        flex: none;
+        display: block;
+      }
+
+      .logo{
+        float: none;
+        width: 100%;
+        display: block;
+        flex: none;
+        text-align: center;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+      }
+
+      nav{
+        float: none;
+        width: 100%;
+        display: block;
+        flex: none;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .hidden-sm{
+    display:none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hidden-md{
+    display:none;
+  }
+  header{
+    section.nav-bar{
+      padding: 0 10px;
+    }
+    section.hero{
+      background-position: 20% 0;
+    }
+  }
+  section.dual-color:before{
+    width: 65%;
+  }
+  section.dual-color:after{
+    width: 70%;
+    transform: skew(0deg,-71deg);
+  }
+}
+
+@media screen and (min-width:1025px) and (max-width: 1440px){
+  header{
+    section.hero{
+      background-position: 20% 0;
+    }
+  }
+
+  section.dual-color:after{
+    width: 72%;
+    transform: skew(0deg,-65deg);
   }
 }
 
