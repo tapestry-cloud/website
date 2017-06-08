@@ -29,6 +29,10 @@ header{
     height: 53px;
     background: #f4f4f4;
 
+    .content{
+      height: 100%;
+    }
+
     nav{
       font-size: 0.9em;
       a {
@@ -75,6 +79,10 @@ header{
   .hero{
     height: 489px;
     background: @dark url('../img/hero.jpg') no-repeat right;
+
+    .content{
+      margin-left: 3rem;
+    }
 
     h1,h2{
       font-family: 'Archivo Black', sans-serif;
@@ -481,7 +489,62 @@ footer{
   }
 }
 
+@media screen and (max-width: 426px) {
+  .xs-col-12{
+    width: 100%;
+  }
+
+  header {
+    section.hero {
+      font-size: 0.7em;
+      height: 360px;
+
+      h1{
+        margin-top:75px;
+      }
+    }
+
+    .nav-bar {
+      height:auto;
+
+      .content{
+        flex: none;
+        display: block;
+      }
+
+      .logo{
+        float: none;
+        width: 100%;
+        display: block;
+        flex: none;
+        text-align: center;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+      }
+
+      nav{
+        float: none;
+        width: 100%;
+        display: block;
+        flex: none;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .hidden-sm{
+    display:none;
+  }
+}
+
 @media screen and (max-width: 1024px) {
+  .hidden-md{
+    display:none;
+  }
   header{
     section.nav-bar{
       padding: 0 10px;
