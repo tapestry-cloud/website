@@ -5,9 +5,9 @@ return [
      * Some example global data, this is available from $this->site(...) in any phtml file
      */
     'site' => [
-        'title' => 'tapestry.cloud',
+        'title' => 'Tapestry &mdash; PHP Static Site Generator',
         'url' => 'http://localhost:3000',
-        'description' => 'Tapestry static site generator.',
+        'description' => 'Tapestry PHP Static Site Generator.',
         'author' => 'Simon Dann',
         'email' => 'simon.dann@gmail.com',
         'google-analytics' => null,
