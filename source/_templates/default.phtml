@@ -6,6 +6,16 @@
 
     <title><?= (isset($title) ? ($title . ' &mdash; ' . $this->site('title')) : $this->site('title')); ?></title>
 
+    <?php if ($this->site('google-analytics')) { ?>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PK3K65K');</script>
+    <!-- End Google Tag Manager -->
+    <?php } ?>
+
     <script type="application/ld+json">
         {
           "@context": "http://schema.org",
@@ -45,6 +55,13 @@
 </head>
 <body>
 
+<?php if ($this->site('google-analytics')) { ?>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PK3K65K"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<?php } ?>
+
 <header>
     <section class="nav-bar">
         <div class="content max-width-4 mx-auto flex">
@@ -55,8 +72,8 @@
             </div>
             <nav class="flex items-center right">
                 <ul class="list-reset list-inline m0">
-                    <li class="m0"><a href="<?= $this->url('documentation') ?>" class="btn btn-link">Documentation</a></li>
-                    <li class="m0"><a href="https://github.com/tapestry-cloud/tapestry/releases" class="btn brand">Download</a></li>
+                    <li class="m0"><a href="<?= $this->url('documentation') ?>" class="btn btn--tracked btn-link">Documentation</a></li>
+                    <li class="m0"><a href="https://github.com/tapestry-cloud/tapestry/releases" class="btn btn--tracked brand">Download</a></li>
                 </ul>
             </nav>
         </div>
@@ -67,7 +84,7 @@
                 <h1>Tapestry<br><span>Static Site Generator</span></h1><br>
                 <h2>Quick to generate, simple to build<br> and easy to extend.</h2>
                 <hr>
-                <a href="<?= $this->url('documentation') ?>" class="btn brand">Find out more</a>
+                <a href="<?= $this->url('documentation') ?>" class="btn btn--tracked brand">Find out more</a>
             </div>
         </div>
     </section>
@@ -88,34 +105,6 @@
     </div>
 </footer>
 
-<?php if ($this->site('google-analytics')) { ?>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', '<?= $this->site('google-analytics') ?>', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <!-- Twitter universal website tag code -->
-    <script>
-        !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
-        },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
-            a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
-        // Insert Twitter Pixel ID and Standard Event data below
-        twq('init','nxk9f');
-        twq('track','PageView');
-    </script>
-    <!-- End Twitter universal website tag code -->
-<?php } ?>
 <script src="<?= $this->asset('js/all.js') ?>" type="application/javascript"></script>
 </body>
 </html>
