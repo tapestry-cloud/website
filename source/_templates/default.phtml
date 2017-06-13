@@ -16,6 +16,15 @@
     <!-- End Google Tag Manager -->
     <?php } ?>
 
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "url": "https://www.tapestry.cloud",
+          "logo": "<?= $this->url('img/favicon.png') ?>"
+        }
+    </script>
+
     <meta name="author" content="<?= (isset($author) ? $author : $this->site('author')); ?>>">
     <meta name="description" content="<?= trim(preg_replace('/\s+/', ' ',(isset($description) ? $description : $this->getExcerpt(160)))) ?>" />
 
