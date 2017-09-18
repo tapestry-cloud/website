@@ -68,6 +68,14 @@ title: Your Content
     of including it within the files <a href="<?= $this->url('documentation/front-matter') ?>">front matter</a>.
 </p>
 
+<aside class="notice blue">
+    <p>
+        By setting your posts date to a day in the future Tapestry will not treat it as published until that date is equal to
+        or less than the date at which Tapestry is asked to build your website. This effectively allows you to automate your
+        build system and schedule publishing.
+    </p>
+</aside>
+
 <h4><a name="a-typical-post" href="#a-typical-post">A typical post</a></h4>
 
 <p>
@@ -232,8 +240,9 @@ permalink: super.html
 
 <aside class="notice blue">
     <p>
-        As part of the <a href="https://github.com/tapestry-cloud/tapestry/milestone/6" target="_blank">1.0.9 milestone</a>
-        due in April 2017; auto publishing will be implemented. Enabling you to effectively schedule drafts for publishing.
+        You can set the <code>--auto-publish</code> flag to have Tapestry ignore the draft front matter if the file's date
+        is less than or equal to the date that the build command was executed.
+        <a href="<?= $this->url('documentation/commands/#build-command') ?>">Click here</a> for more information.
     </p>
 </aside>
 
