@@ -102,6 +102,10 @@ title: Pretty URLS
             <td>This is a special tag that is relevant only to paginated pages, it will return the current page number.</td>
         </tr>
         <tr>
+            <td><code>{category}</code></td>
+            <td>This tag will consolidate all the categories that belong to the page into one string split by <code>/</code>. For example a file with three categories may have the result of this tag equal <code>category1/category2/category3</code>. This tag is special in that is has an optional limit argument: <code>{category,1}</code>, in the case where you pass this tag a limit it will only include categories up to that limit.</td>
+        </tr>
+        <tr>
             <td><code>{slug}</code></td>
             <td>The current file slug, generated from its title if one is set in the frontmatter or otherwise the filename.</td>
         </tr>
