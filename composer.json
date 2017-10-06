@@ -9,6 +9,7 @@
     }
   ],
   "require": {
+    "tapestry-cloud/tapestry": "dev-master",
     "tapestry-cloud/asset-plugin": "dev-master",
     "tapestry-cloud/code-example-plugin": "dev-master"
   },
