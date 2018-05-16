@@ -68,6 +68,14 @@ return [
     'kernel' => \TapestryCloud\Kernel::class,
 
     'ignore' => [
-        '_code-examples'
+        '_code-examples',
+        'css',
+        'img',
+        'js',
+    ],
+    'copy' => [
+        'css',
+        'img',
+        'js',
     ]
 ];
