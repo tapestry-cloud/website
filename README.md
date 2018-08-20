@@ -5,9 +5,17 @@ This is the source code repository for the documentation website [tapestry.cloud
 # Installing
 
 To install a copy locally run the following steps:
-```
-git clone https://github.com/tapestry-cloud/tapestry-cloud-src.git # Clone a local copy of this repository
-composer install && yarn install # Install PHP dependencies (for Tapestry) and node dependencies (for building assets)
-gulp build # Execute the build task with `gulp`
-php -S 127.0.0.1:3000 -t build_local # Use the basic http server built into PHP to serve the content of `build_local` to 127.0.0.1:3000
+
+```bash
+# Clone a local copy of this repository
+git clone https://github.com/tapestry-cloud/tapestry-cloud-src.git
+
+# Install PHP dependencies (for Tapestry) and node dependencies (for building assets)
+composer install && yarn install
+
+# Execute the build task with gulp
+gulp build
+
+# Use the basic http server built into PHP to serve the content of `build_local` to 127.0.0.1:3000
+php -S 127.0.0.1:3000 -t build_local
 ```
