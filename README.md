@@ -8,7 +8,7 @@
 ## About this repository
 This is the source code repository for the documentation website [tapestry.cloud](https://www.tapestry.cloud). It provides documentation for the [Tapestry static site generator](https://github.com/tapestry-cloud/tapestry).
 
-## Installing
+## Installation
 To install a copy locally run the following steps:
 
 ```bash
