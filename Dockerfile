@@ -32,4 +32,4 @@ RUN apk update && apk upgrade
 ARG BUILD_ENV=production
 COPY --from=php-builder /build/build_${BUILD_ENV} /static
 
-RUN echo "hello world"
+RUN echo "hello world again"
