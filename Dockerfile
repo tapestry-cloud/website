@@ -31,5 +31,3 @@ RUN apk update && apk upgrade
 # Re-declared so it can be used in this stage as well
 ARG BUILD_ENV=production
 COPY --from=php-builder /build/build_${BUILD_ENV} /static
-
-RUN echo "hello world again"
