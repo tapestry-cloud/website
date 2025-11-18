@@ -17,17 +17,17 @@ RUN apt-get update && \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-ARG ENVIRONMENT=production
+ARG BUILD_ENV=production
 
 WORKDIR /build
 COPY --from=node-builder /build .
 
 RUN composer install --no-interaction --optimize-autoloader
-RUN php ./vendor/bin/tapestry.php build --env=${ENVIRONMENT}
+RUN php ./vendor/bin/tapestry.php build --env=${BUILD_ENV}
 
 FROM flashspys/nginx-static
 RUN apk update && apk upgrade
 
 # Re-declared so it can be used in this stage as well
-ARG ENVIRONMENT=production
-COPY --from=php-builder /build/build_${ENVIRONMENT} /static
+ARG BUILD_ENV=production
+COPY --from=php-builder /build/build_${BUILD_ENV} /static
