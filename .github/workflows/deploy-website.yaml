@@ -38,6 +38,7 @@ jobs:
           docker cp temp-container:/static ./static
           docker rm temp-container
           cd static && zip -r ../site.zip .
+          cd ..
 
       - name: Calculate signature
         id: signature
