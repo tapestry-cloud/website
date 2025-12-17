@@ -1,0 +1,54 @@
+name: Deploy website
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+concurrency:
+  group: deploy-website
+  cancel-in-progress: true
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          tags: tapestry-website:latest
+          load: true
+          platforms: linux/amd64
+          cache-from: type=gha,scope=deploy-tapestry-website
+          cache-to: type=gha,mode=max,scope=deploy-tapestry-website
+        env:
+          DOCKER_BUILD_SUMMARY: false
+          DOCKER_BUILD_RECORD_UPLOAD: false
+
+      - name: Extract and zip artifact
+        run: |
+          docker create --name temp-container tapestry-website:latest
+          docker cp temp-container:/static ./static
+          docker rm temp-container
+          cd static && zip -r ../site.zip .
+
+      - name: Calculate signature
+        id: signature
+        run: |
+          SIGNATURE=$(cat site.zip | openssl dgst -sha256 -hmac "${{ secrets.DEPLOY_SECRET }}" | cut -d' ' -f2)
+          echo "signature=sha256=${SIGNATURE}" >> $GITHUB_OUTPUT
+
+      - name: Deploy to server
+        run: |
+          curl -f -X POST "${{ secrets.DEPLOY_URL }}" \
+            -H "X-Signature: ${{ steps.signature.outputs.signature }}" \
+            -H "X-Hash: ${{ github.sha }}" \
+            -F "hostname=${{ secrets.SITE_HOSTNAME }}" \
+            -F "file=@site.zip"

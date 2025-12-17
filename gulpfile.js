@@ -44,20 +44,6 @@ var verbose = argv.verbose || false;
 
 gutil.log('Environment', chalk.magenta(env));
 
-gulp.task('tapestry', function (cb) {
-    var cmd = '.\\vendor\\bin\\tapestry.php.bat build' + ((verbose) ? '' : ' --quiet --clear') +' --env=' + env;
-    gutil.log('Executing:', chalk.magenta(cmd));
-    exec(cmd, function (err, stdout, stderr) {
-        if (verbose && stdout.length > 0){
-            console.log(stdout);
-        }
-        if (stderr.length > 0) {
-            console.log(stderr);
-        }
-        cb(err);
-    });
-});
-
 gulp.task('javascript', function() {
     var bundler = browserify('./source/_assets/js/app.js', {
         // entry:         true,
@@ -72,7 +58,6 @@ gulp.task('javascript', function() {
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())
         .pipe(rev())
-        .pipe(sourcemaps.write('./'))
         .pipe(size())
         .pipe(gulp.dest('./source/js/'))
         .pipe(rev.manifest({merge: true}))
@@ -107,7 +92,6 @@ gulp.task('less-min', ['less'], function() {
         .pipe(cleanCSS())
         .pipe(rename({suffix: '-min'}))
         .pipe(rev())
-        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./source/css'))
         .pipe(rev.manifest({merge: true}))
         .pipe(gulp.dest('./'));
@@ -125,15 +109,8 @@ gulp.task('watch', ['build', 'browser-sync'], function () {
     gulp.watch('./source/_assets/img/**/*', ['image-min']);
     gulp.watch('./source/_assets/js/**/*', ['javascript']);
     gulp.watch('./source/_assets/less/main.less', ['less-min']);
-    gulp.watch(['./source/**/*', '!./source/_assets/**/*'], ['tapestry']);
-});
-
-gulp.task('html-min', function(){
-    return gulp.src('./build_' + env + '/**/*.html')
-        .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./build_' + env));
 });
 
 gulp.task('build', function(cb){
-    runSequence('javascript', 'less-min', 'image-min', 'tapestry', 'html-min',cb);
+    runSequence('javascript', 'less-min', 'image-min',cb);
 });
